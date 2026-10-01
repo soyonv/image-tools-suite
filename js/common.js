@@ -9,11 +9,14 @@
 
   /* ---------- Language (Bengali primary, English secondary) ---------- */
   function getLang() {
+    // A stored choice always wins; otherwise follow the browser language so a
+    // global audience gets English automatically and Bengali users get Bengali.
     try {
-      return localStorage.getItem(LANG_KEY) === "en" ? "en" : "bn";
-    } catch (e) {
-      return "bn";
-    }
+      var saved = localStorage.getItem(LANG_KEY);
+      if (saved === "en" || saved === "bn") return saved;
+    } catch (e) { /* ignore */ }
+    var nav = (navigator.language || (navigator.languages && navigator.languages[0]) || "en").toLowerCase();
+    return nav.indexOf("bn") === 0 ? "bn" : "en";
   }
 
   function applyLang(lang) {
@@ -189,6 +192,55 @@
     });
   }
 
+  /* ---------- Uploader (multiple files) ----------
+     Usage: PhotoTools.initMultiUploader(zoneEl, inputEl, onFiles)
+     ---------------------------------------------------------- */
+  function initMultiUploader(zone, input, onFiles) {
+    if (!zone || !input) return;
+
+    function handle(fileList) {
+      var files = Array.prototype.slice.call(fileList || []).filter(isImageFile);
+      if (!files.length) {
+        alert(
+          getLang() === "en"
+            ? "Please choose image files (JPG, PNG, WebP, GIF)."
+            : "অনুগ্রহ করে ছবির ফাইল বাছুন (JPG, PNG, WebP, GIF)।"
+        );
+        return;
+      }
+      onFiles(files);
+    }
+
+    zone.addEventListener("click", function () { input.click(); });
+    zone.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        input.click();
+      }
+    });
+    input.addEventListener("change", function () {
+      handle(input.files);
+      input.value = "";
+    });
+    ["dragenter", "dragover"].forEach(function (evt) {
+      zone.addEventListener(evt, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        zone.classList.add("dragover");
+      });
+    });
+    ["dragleave", "drop"].forEach(function (evt) {
+      zone.addEventListener(evt, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        zone.classList.remove("dragover");
+      });
+    });
+    zone.addEventListener("drop", function (e) {
+      if (e.dataTransfer && e.dataTransfer.files) handle(e.dataTransfer.files);
+    });
+  }
+
   /* ---------- State container shared by tool pages ---------- */
   var state = {
     file: null,
@@ -248,6 +300,7 @@
     downloadBlob: downloadBlob,
     flattenToCanvas: flattenToCanvas,
     initUploader: initUploader,
+    initMultiUploader: initMultiUploader,
     state: state,
     setImage: setImage
   };

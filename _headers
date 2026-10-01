@@ -1,0 +1,19 @@
+# Netlify / Cloudflare Pages headers
+# Fingerprinted-free static assets: cache for a week, HTML always fresh.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/css/*
+  Cache-Control: public, max-age=604800
+
+/js/*
+  Cache-Control: public, max-age=604800
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+/og-image.svg
+  Cache-Control: public, max-age=604800
