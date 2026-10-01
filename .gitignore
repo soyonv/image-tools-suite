@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Freebuff platform runtime
+.vly-run/
+
+# Logs
+*.log
+
+# Local environment files (never commit secrets)
+.env
+.env.*

@@ -1,0 +1,8 @@
+# robots.txt — ছবির সহায়ক | Photo Sahayak
+# https://example.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://example.com/sitemap.xml
