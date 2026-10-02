@@ -1,4 +1,8 @@
 {
   "$comment": "Single source of truth for the site's public address. Every canonical URL, sitemap entry, feed item, llms.txt reference, robots.txt Sitemap line, JSON-LD block and social image URL is derived from this. Change `domain` here, run `npm run build`, and the whole site follows. You can also override for a one-off build with the SITE_DOMAIN environment variable.",
-  "domain": "https://photosahayak.netlify.app"
+  "domain": "https://photosahayak.netlify.app",
+  "verification": {
+    "$comment": "Google Search Console ownership proof. photosahayak.netlify.app is a netlify.app subdomain, so we cannot publish a DNS TXT record; ownership is proven with the HTML meta tag that scripts/generate.mjs puts in every <head> plus the root google<token>.html file. Accepts the token with or without the leading 'google-site-verification=' prefix. Replace it here, run npm run build, and the whole site follows.",
+    "google": "google-site-verification=K8OpKzoXFUM-vUMqgWfSAmUMmkRy07k0pbBtiAIMuhM"
+  }
 }

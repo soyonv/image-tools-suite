@@ -1,0 +1,57 @@
+name: build
+
+# The site is static and the build is the whole test suite: scripts/generate.mjs
+# fails on a broken link graph or a missing Search Console tag, and
+# scripts/verify.mjs checks the artefact that actually ships. Nothing here needs
+# a database, a secret or an install step beyond npm.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify dist/
+        run: npm run verify
+
+      - name: Syntax-check every browser script
+        run: |
+          for f in js/*.js; do node --check "$f"; done
+
+      - name: The build must be reproducible
+        run: |
+          # Re-running every step must change nothing, or the committed dist/
+          # and the deployed artefact can drift apart.
+          cp -r dist ../dist-before
+          npm run build
+          diff -r ../dist-before dist
+
+      - name: Upload the deployable site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/
+          retention-days: 7
