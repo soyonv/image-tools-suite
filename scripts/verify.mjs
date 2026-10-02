@@ -86,9 +86,43 @@ if (TOKEN) {
 }
 
 const pages = source.length;
+
+/* One canonical address per page, and it is the clean one. Netlify answers
+   both /compress-image and /compress-image.html with a 200, so a canonical
+   that keeps the .html form leaves two live URLs per page. */
+const htmlish = source.filter((f) => f !== "404.html");
+const notClean = [];
+const duplicated = [];
+
+for (const f of htmlish) {
+  if (!existsSync(join(DIST, f))) continue;
+  const html = readFileSync(join(DIST, f), "utf8");
+  const canonicals = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map((m) => m[1]);
+  if (canonicals.length !== 1) {
+    duplicated.push(`${f} (${canonicals.length})`);
+    continue;
+  }
+  if (/\/index\.html?$/.test(canonicals[0]) || /\.html?$/.test(canonicals[0])) notClean.push(canonicals[0]);
+}
+if (duplicated.length) fail(`page(s) without exactly one canonical: ${duplicated.join(", ")}`);
+if (notClean.length) fail(`canonical still points at a .html URL: ${notClean.join(", ")}`);
+
+/* _redirects sends the .html form onto the canonical, but the Search Console
+   token file must survive that wildcard — Google fetches that exact name. */
+if (TOKEN && existsSync(join(DIST, "_redirects"))) {
+  const redirects = readFileSync(join(DIST, "_redirects"), "utf8");
+  if (!redirects.includes(VERIFY_FILE)) {
+    fail(`_redirects has no pass-through for ${VERIFY_FILE}; the .html -> clean wildcard would redirect it away`);
+  }
+}
+
 if (problems.length) {
   console.error(`verify: ${problems.length} problem(s)\n  - ${problems.join("\n  - ")}`);
   process.exit(1);
 }
 
-console.log(`verify: dist/ OK — ${pages} pages${TOKEN ? ` tagged for Search Console, ${VERIFY_FILE} present` : ""}`);
+console.log(
+  `verify: dist/ OK — ${pages} pages with one clean canonical each${
+    TOKEN ? `, tagged for Search Console, ${VERIFY_FILE} present` : ""
+  }`
+);

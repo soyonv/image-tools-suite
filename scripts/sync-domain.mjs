@@ -16,6 +16,11 @@
    address — the worst kind of SEO bug, because it looks done but is
    only half applied.
 
+   It also normalises the URL *form*: on this site the canonical address
+   of a page is the clean one (/compress-image), so a canonical written as
+   /compress-image.html is corrected here rather than being left to
+   rot next to a domain that is already right.
+
    How it decides what is "ours": any absolute http(s) URL whose host
    is NOT in the external allow-list below. That means it can move
    the site off ANY previous domain, not just the placeholder — so a
@@ -77,7 +82,20 @@ const targets = [
   "robots.txt"
 ].filter((f) => existsSync(join(ROOT, f)));
 
-const URL_RE = /(https?:\/\/)([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+)/g;
+const URL_RE = /(https?:\/\/)([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+)(\/[^\s"'<>]*)?/g;
+
+/* Canonical addresses on this site are clean: /compress-image, never
+   /compress-image.html. The generated pages get that from
+   scripts/generate.mjs; these hand-written pages carry literal URLs, so the
+   same normalisation happens here. It runs even when the host is already
+   correct, because changing the domain must not be what decides the URL
+   form. Only a page path ends in .html, so og-image.png, sitemap.xml and
+   feed.xml are left alone. */
+const cleanPath = (path) => {
+  if (!path) return "";
+  if (path === "/index.html" || path === "/index.htm") return "/";
+  return path.replace(/\.html$/, "");
+};
 
 const touchedHosts = new Map();
 let changed = 0;
@@ -87,12 +105,13 @@ for (const file of targets) {
   const path = join(ROOT, file);
   const before = readFileSync(path, "utf8");
 
-  const after = before.replace(URL_RE, (match, scheme, host) => {
-    if (host === HOST) return match;
+  const after = before.replace(URL_RE, (match, scheme, host, rest) => {
     if (EXTERNAL.has(host)) return match;
-    touchedHosts.set(host, (touchedHosts.get(host) || 0) + 1);
-    hits++;
-    return `${scheme}${HOST}`;
+    if (host !== HOST) {
+      touchedHosts.set(host, (touchedHosts.get(host) || 0) + 1);
+      hits++;
+    }
+    return `${scheme}${HOST}${cleanPath(rest || "")}`;
   });
 
   if (after !== before) {

@@ -64,11 +64,22 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  /* Clean URLs are canonical on this site (/compress-image), so the local
+     server resolves them the way Netlify does: try the path as given, then
+     the matching .html file. Without this the preview would 404 on every
+     canonical URL and quietly teach you to test the wrong addresses. */
+  const tryClean =
+    path.extname(filePath) === "" && fs.existsSync(`${filePath}.html`) ? `${filePath}.html` : null;
+
   fs.stat(filePath, (err, stat) => {
     if (!err && stat.isDirectory()) {
       filePath = path.join(filePath, "index.html");
     }
     fs.stat(filePath, (err2) => {
+      if (err2 && tryClean) {
+        filePath = tryClean;
+        err2 = null;
+      }
       if (!err2) {
         send(res, 200, filePath);
       } else {

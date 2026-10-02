@@ -1,10 +1,20 @@
 # Netlify / Cloudflare Pages redirects
 #
-# The homepage is canonically "/" (see site.config.json), but a static host
-# will happily serve /index.html as well. Two live URLs for one page splits
-# the site's own signals, so the .html form is 301'd to the clean root.
+# A page's canonical address is the CLEAN one — /compress-image, never
+# /compress-image.html. Netlify answers both forms with a 200, so without the
+# rule at the bottom of this file every page would have two live URLs and
+# would split its own link equity between them. First match wins, so the two
+# specific rules above the wildcard do.
 
 /index.html   /   301
 
 # Defensive: the other common spelling of the same file.
 /index.htm    /   301
+
+# Search Console fetches this exact filename and nothing else, so it must
+# never be redirected by the wildcard below. If you rotate the token in
+# site.config.json, update this line too — npm run verify will tell you.
+#/googleK8OpKzoXFUM-vUMqgWfSAmUMmkRy07k0pbBtiAIMuhM.html   /googleK8OpKzoXFUM-vUMqgWfSAmUMmkRy07k0pbBtiAIMuhM.html   200
+
+# Everything else: the .html form 301s onto the canonical clean URL.
+/*.html   /:splat   301
