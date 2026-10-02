@@ -107,13 +107,16 @@ for (const f of htmlish) {
 if (duplicated.length) fail(`page(s) without exactly one canonical: ${duplicated.join(", ")}`);
 if (notClean.length) fail(`canonical still points at a .html URL: ${notClean.join(", ")}`);
 
-/* _redirects sends the .html form onto the canonical, but the Search Console
-   token file must survive that wildcard — Google fetches that exact name. */
-if (TOKEN && existsSync(join(DIST, "_redirects"))) {
-  const redirects = readFileSync(join(DIST, "_redirects"), "utf8");
-  if (!redirects.includes(VERIFY_FILE)) {
-    fail(`_redirects has no pass-through for ${VERIFY_FILE}; the .html -> clean wildcard would redirect it away`);
-  }
+/* _redirects sends the .html form onto the canonical. Two things it must not
+   do: redirect the Search Console token file (Google fetches that exact name),
+   or redirect the 404 page (/404 is not a route). */
+if (existsSync(join(DIST, "_redirects"))) {
+  const rules = readFileSync(join(DIST, "_redirects"), "utf8")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l && !l.startsWith("#"));
+  const forbidden = rules.filter((l) => /^\/(?:404\.html|google[A-Za-z0-9_-]+\.html)\s/.test(l));
+  if (forbidden.length) fail(`_redirects redirects a file it must leave alone: ${forbidden.join(" | ")}`);
 }
 
 if (problems.length) {
