@@ -125,11 +125,17 @@ between them.
   normalises the path as well as the host — otherwise a correctly changed domain
   would leave a `.html` canonical behind, which is exactly the "looks done but is
   half applied" bug it exists to prevent.
-- `/_redirects` and `vercel.json` 301 the `.html` form onto the canonical. The
-  Search Console token file is passed through *before* that wildcard, because
-  Google fetches that exact filename.
+- `/_redirects` (generated) and `vercel.json` 301 the `.html` form onto the
+  canonical. The Netlify rules carry a `!` force flag (`301!`) because Netlify
+  serves an exact-match static file *before* consulting any redirect rule — a
+  plain `301` sitting next to a real `compress-image.html` is silently ignored.
+  They are one rule per page rather than a wildcard because Netlify has no
+  mid-path `*`. `404.html` and the Search Console token file are left out of
+  the list on purpose: `/404` is not a route, and Google fetches
+  `google<token>.html` by that exact name.
 - `npm run verify` fails the build if any page keeps a `.html` canonical, has
-  two of them, or if the token pass-through goes missing from `_redirects`.
+  two of them, or if `_redirects` gains a rule for `404.html` or the Search
+  Console token file.
 
 The `.html` file on disk and the `.html` hrefs in the markup are deliberately
 left alone: it is the only form that works on every static host, including
