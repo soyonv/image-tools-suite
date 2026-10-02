@@ -86,9 +86,12 @@ scripts/
   sync-domain.mjs     repoints the hand-written pages and robots.txt
   linkgraph.mjs       rewrites the link sections inside the hand-written pages
   stage.mjs           copies the static site into dist/
-site.config.json      the site's domain — single source of truth
+  verify.mjs          post-build check of dist/ (tag coverage, token file, drift)
+site.config.json      the site's domain + Search Console token — single source of truth
+google<token>.html    Search Console verification file (generated)
 server.js             zero-dependency static server for local preview
-package.json          start / dev / generate / build
+package.json          start / dev / generate / build / verify
+.github/workflows/build.yml   CI: build, verify dist/, js syntax, reproducible-build check
 robots.txt            hand-written; allows search + AI crawlers
 sitemap.xml           generated, 31 URLs
 feed.xml              generated RSS, 9 items
@@ -218,9 +221,14 @@ npm start          # serves the folder on 0.0.0.0:$PORT
 Useful checks:
 
 ```bash
-npm run build      # generate + social card + domain sync + stage dist/
+npm run build      # generate + social card + domain sync + link graph + stage dist/
+npm run verify     # check dist/: every page tagged exactly once, token file intact
 for f in js/*.js; do node --check "$f"; done   # syntax check every script
 ```
+
+`npm run build` also **fails on purpose** if any page is missing the Search
+Console verification tag or carries it twice — see step ৩ below. `npm run
+verify` then checks the artefact that actually ships, not just the sources.
 
 ### নতুন টুল যোগ করা / Adding a tool
 
@@ -273,12 +281,65 @@ Any of these serve the site as-is, with no build server and no cost:
 Whichever you pick, confirm the domain in `site.config.json` matches the
 address you deployed to, then run `npm run build` again.
 
-## ৩) Google Search Console-এ sitemap / Submit the sitemap
+## ৩) Google Search Console / Verify + submit the sitemap
 
-1. Add the site at <https://search.google.com/search-console> and verify the
-   domain.
-2. Under **Sitemaps**, submit `sitemap.xml`.
-3. Repeat at <https://www.bing.com/webmasters> if you want Bing indexing.
+### 🔐 Ownership is already built in / ডোমেইন ভেরিফাই আগেই বসানো
+
+There is nothing to paste. `site.config.json` holds the token:
+
+```json
+"verification": {
+  "google": "google-site-verification=K8OpKzoXFUM-vUMqgWfSAmUMmkRy07k0pbBtiAIMuhM"
+}
+```
+
+`scripts/generate.mjs` turns that one value into **two** proofs at once, and
+re-emits both on every build:
+
+| Method | What lands in `dist/` | Pick it when Google offers |
+| --- | --- | --- |
+| HTML tag | `<meta name="google-site-verification" content="K8Op…">` in all 32 pages | **HTML tag** (the default) |
+| HTML file | `googleK8Op….html` containing `google-site-verification=K8Op…` | **HTML file** upload |
+
+Both are generated, so a rebuild can never drop them. The generator then
+**fails the build** if any page is missing the tag or carries it twice — which
+covers the seven hand-written pages (`index`, `resize-image`, `compress-image`,
+`crop-image`, `passport-photo`, `png-to-jpg`, `404`) that no template touches.
+
+The DNS TXT method is not available here: `photosahayak.netlify.app` is a
+`netlify.app` subdomain and Netlify owns that DNS. If you ever attach a domain
+of your own, add `google-site-verification=K8Op…` as a TXT record on it and
+drop `verification.google` from the config if you prefer.
+
+### জমা দেওয়ার নিয়ম / Then submit
+
+1. Add the site at <https://search.google.com/search-console>, choose the
+   **HTML tag** method, and paste nothing — the tag is already on the homepage.
+2. Under **Sitemaps**, submit `https://photosahayak.netlify.app/sitemap.xml`.
+3. From **URL Inspection**, request indexing for `/` once to get the crawl
+   started.
+4. Repeat at <https://www.bing.com/webmasters> if you want Bing indexing.
+
+To rotate or retire the token, edit `verification.google` in
+`site.config.json` (set it to `""` to strip the tag everywhere) and run
+`npm run build`.
+
+### ✅ Checks that run on every push and pull request
+
+`.github/workflows/build.yml` is the whole test suite, and it needs no secret,
+database or service — the build *is* the test:
+
+1. `npm run build` — fails on a broken link graph or a missing/duplicated tag.
+2. `npm run verify` — `dist/` holds every page byte-identical to the root, each
+   tagged exactly once inside `<head>`, and `google<token>.html` present with
+   byte-exact content.
+3. `node --check` on all 23 browser modules.
+4. A reproducibility check — re-running every build step must change nothing,
+   so the committed `dist/` can never drift from the deployed artefact.
+
+`npm run verify` is deliberately not a rubber stamp: deleting the tag from a
+page, deleting the token file, corrupting its content, or hand-editing
+`dist/index.html` each make it exit 1 and name the file.
 
 ---
 

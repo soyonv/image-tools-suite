@@ -19,6 +19,32 @@ const siteConfig = JSON.parse(readFileSync(join(ROOT, "site.config.json"), "utf8
 const DOMAIN = String(process.env.SITE_DOMAIN || siteConfig.domain).replace(/\/+$/, "");
 const LASTMOD = "2026-10-01";
 
+/* ---------- Google Search Console verification ----------
+ * The site lives on a netlify.app subdomain, whose DNS we do not control,
+ * so the TXT-record method is unavailable. Ownership is proven the other
+ * two ways Google accepts instead:
+ *
+ *   1. <meta name="google-site-verification"> in every <head>. Emitted from
+ *      config so a rebuild can never silently drop it, and asserted at the
+ *      end of this script so a hand-edited page fails the build instead of
+ *      the Search Console check.
+ *   2. google<token>.html at the site root, written below for the
+ *      file-based method.
+ *
+ * The config value may carry the 'google-site-verification=' prefix or not;
+ * both forms normalise to the bare token used by the meta tag. */
+const GOOGLE_SITE_VERIFICATION = String(siteConfig.verification?.google || "")
+  .trim()
+  .replace(/^google-site-verification=/, "")
+  .trim();
+
+/* Empty string when unverified, so templates render byte-identical to a
+ * build with no token configured. */
+const VERIFY_META = GOOGLE_SITE_VERIFICATION
+  ? `\n  <meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}">`
+  : "";
+const VERIFY_FILE = GOOGLE_SITE_VERIFICATION ? `google${GOOGLE_SITE_VERIFICATION}.html` : "";
+
 /* ---------- Load configs ---------- */
 const toolsDir = join(ROOT, "scripts", "tools");
 const files = readdirSync(toolsDir).filter((f) => f.endsWith(".mjs")).sort();
@@ -321,7 +347,7 @@ function page(tool) {
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">${VERIFY_META}
   <title>${metaTitle(tool.title)}</title>
   <meta name="description" content="${metaDesc(tool.descEn, tool.desc)}">
   <meta name="keywords" content="${tool.keywords}">
@@ -455,7 +481,7 @@ function toolsIndex() {
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">${VERIFY_META}
   <title>${metaTitle(`সব ফটো টুল | All Free Online Image Tools — ${SITE.bn}`)}</title>
   <meta name="description" content="All free browser-based image tools in one place: resize, compress, convert, crop, watermark, PDF, ICO. কোনো আপলোড নেই।">
   <meta name="keywords" content="all image tools, free photo tools list, সব ফটো টুল, online image editor tools, browser image tools">
@@ -676,7 +702,7 @@ function blogPost(post) {
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">${VERIFY_META}
   <title>${metaTitle(post.title)}</title>
   <meta name="description" content="${metaDesc(post.descEn, post.desc)}">
   <meta name="keywords" content="${post.keywords}">
@@ -815,7 +841,7 @@ function blogIndex() {
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">${VERIFY_META}
   <title>${metaTitle(`ছবি ফটো গাইড | Free Photo Editing Guides — ${SITE.en}`)}</title>
   <meta name="description" content="Practical guides to compressing photos, passport photo sizes, image formats and photo privacy. বাংলা ও English গাইড।">
   <meta name="keywords" content="photo editing guide, image tips, ছবি গাইড, photo size guide, image format tutorial">
@@ -1014,4 +1040,35 @@ writeFileSync(join(ROOT, "blog.html"), blogIndex(), "utf8");
 writeFileSync(join(ROOT, "llms.txt"), llmsTxt(), "utf8");
 writeFileSync(join(ROOT, "sitemap.xml"), sitemap(), "utf8");
 writeFileSync(join(ROOT, "feed.xml"), rss(), "utf8");
+
+/* Search Console's file-based verification: google<token>.html at the root,
+ * containing the full 'google-site-verification=<token>' string. Written at
+ * the root so scripts/stage.mjs sweeps it into dist/ with every other page. */
+if (VERIFY_FILE) {
+  writeFileSync(join(ROOT, VERIFY_FILE), `google-site-verification=${GOOGLE_SITE_VERIFICATION}`, "utf8");
+}
+
+/* ---------- Guard ----------
+ * Google reads the tag off any page it fetches, and a duplicated tag reads
+ * as malformed markup. The generated pages get it from the templates above,
+ * but seven pages are maintained by hand — if one of those loses the tag in
+ * a later edit, fail the build here rather than at the Search Console
+ * "Verify" button. */
+if (GOOGLE_SITE_VERIFICATION) {
+  const TAG_RE = /<meta name="google-site-verification" content="[^"]+">/g;
+  const pages = readdirSync(ROOT).filter((f) => f.endsWith(".html") && f !== VERIFY_FILE);
+  const bad = pages.filter(
+    (f) => (readFileSync(join(ROOT, f), "utf8").match(TAG_RE) || []).length !== 1
+  );
+  if (bad.length) {
+    console.error(
+      `verification tag missing or duplicated on ${bad.length} page(s):\n  - ${bad.join("\n  - ")}`
+    );
+    process.exit(1);
+  }
+  console.log(
+    `verification tag on all ${pages.length} pages, + ${VERIFY_FILE}`
+  );
+}
+
 console.log(`Generated ${count} pages + tools.html + blog.html + llms.txt + sitemap.xml + feed.xml`);
