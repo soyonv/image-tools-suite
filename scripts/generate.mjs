@@ -45,6 +45,21 @@ const VERIFY_META = GOOGLE_SITE_VERIFICATION
   : "";
 const VERIFY_FILE = GOOGLE_SITE_VERIFICATION ? `google${GOOGLE_SITE_VERIFICATION}.html` : "";
 
+/* ---------- Canonical URLs ----------
+ * Every page has exactly one canonical address, and it is the clean one:
+ * `/compress-image`, never `/compress-image.html`. Netlify serves both forms
+ * with a 200, so without a decision the site would have two live URLs per page
+ * and would split its own link equity between them.
+ *
+ * The `.html` form stays the filename on disk and stays the href in the
+ * markup, because it is the only form that works on every static host —
+ * GitHub Pages and a plain `file://` open both have no clean-URL support.
+ * The clean form is what the canonical, the sitemap, the feed and every
+ * schema URL declare, and `/_redirects` 301s the `.html` form onto it. */
+const cleanPath = (slug) =>
+  slug === "index.html" || slug === "index.htm" ? "/" : `/${slug.replace(/\.html?$/, "")}`;
+const pageUrl = (slug) => `${DOMAIN}${cleanPath(slug)}`;
+
 /* ---------- Load configs ---------- */
 const toolsDir = join(ROOT, "scripts", "tools");
 const files = readdirSync(toolsDir).filter((f) => f.endsWith(".mjs")).sort();
@@ -278,7 +293,7 @@ ${tool.steps.map((s) => `          <li>
       </section>`;
 
 function page(tool) {
-  const url = `${DOMAIN}/${tool.slug}`;
+  const url = pageUrl(tool.slug);
   const scripts = ["js/i18n.js", "js/common.js", ...(tool.scripts || [])]
     .map((s) => `  <script src="${s}"></script>`)
     .join("\n");
@@ -311,7 +326,7 @@ function page(tool) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${DOMAIN}/` },
-      { "@type": "ListItem", position: 2, name: "All tools", item: `${DOMAIN}/tools.html` },
+      { "@type": "ListItem", position: 2, name: "All tools", item: pageUrl("tools.html") },
       { "@type": "ListItem", position: 3, name: tool.h1en, item: url }
     ]
   };
@@ -445,7 +460,7 @@ function toolsIndex() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "সব ফটো টুল — All Photo Tools",
-    url: `${DOMAIN}/tools.html`,
+    url: pageUrl("tools.html"),
     inLanguage: ["bn", "en"],
     description: "Complete list of free browser-based image tools.",
     mainEntity: {
@@ -456,13 +471,13 @@ function toolsIndex() {
           "@type": "ListItem",
           position: i + 1,
           name: t.h1en,
-          url: `${DOMAIN}/${t.slug}`
+          url: pageUrl(t.slug)
         })),
         ...legacyForList.map((l, i) => ({
           "@type": "ListItem",
           position: TOOLS.length + i + 1,
           name: l.en,
-          url: `${DOMAIN}/${l.slug}`
+          url: pageUrl(l.slug)
         }))
       ]
     }
@@ -473,7 +488,7 @@ function toolsIndex() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${DOMAIN}/` },
-      { "@type": "ListItem", position: 2, name: "All tools", item: `${DOMAIN}/tools.html` }
+      { "@type": "ListItem", position: 2, name: "All tools", item: pageUrl("tools.html") }
     ]
   };
 
@@ -487,7 +502,7 @@ function toolsIndex() {
   <meta name="keywords" content="all image tools, free photo tools list, সব ফটো টুল, online image editor tools, browser image tools">
   <meta name="author" content="${SITE.bn} | ${SITE.en}">
   <meta name="theme-color" content="#0f766e">
-  <link rel="canonical" href="${DOMAIN}/tools.html">
+  <link rel="canonical" href="${pageUrl("tools.html")}">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${SITE.bn} | ${SITE.en}">
@@ -495,7 +510,7 @@ function toolsIndex() {
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:title" content="সব ফটো টুল | All Free Online Image Tools">
   <meta property="og:description" content="সব ফ্রি অনলাইন ইমেজ টুল — ব্রাউজারেই কাজ হয়, কোনো আপলোড নেই।">
-  <meta property="og:url" content="${DOMAIN}/tools.html">
+  <meta property="og:url" content="${pageUrl("tools.html")}">
   <meta property="og:image" content="${DOMAIN}/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
@@ -615,7 +630,7 @@ ${bn
 };
 
 function blogPost(post) {
-  const url = `${DOMAIN}/${post.slug}`;
+  const url = pageUrl(post.slug);
   const words = postText(post).split(" ").filter(Boolean).length;
   const readingMinutesEn = Math.max(1, Math.round(words / 200));
   const readingMinutesBn = Math.max(1, Math.round(words / 180));
@@ -651,7 +666,7 @@ function blogPost(post) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${DOMAIN}/` },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${DOMAIN}/blog.html` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: pageUrl("blog.html") },
       { "@type": "ListItem", position: 3, name: post.h1en, item: url }
     ]
   };
@@ -814,15 +829,15 @@ function blogIndex() {
   const ld = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "@id": `${DOMAIN}/blog.html#blog`,
+    "@id": `${pageUrl("blog.html")}#blog`,
     name: "ছবি ফটো গাইড — Photo Guides",
-    url: `${DOMAIN}/blog.html`,
+    url: pageUrl("blog.html"),
     inLanguage: ["bn", "en"],
     description: "Practical, bilingual guides to resizing, compressing and preparing photos online.",
     blogPost: POSTS.map((p) => ({
       "@type": "BlogPosting",
       headline: p.h1en,
-      url: `${DOMAIN}/${p.slug}`,
+      url: pageUrl(p.slug),
       datePublished: p.date,
       description: p.descEn
     }))
@@ -833,7 +848,7 @@ function blogIndex() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${DOMAIN}/` },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${DOMAIN}/blog.html` }
+      { "@type": "ListItem", position: 2, name: "Blog", item: pageUrl("blog.html") }
     ]
   };
 
@@ -847,7 +862,7 @@ function blogIndex() {
   <meta name="keywords" content="photo editing guide, image tips, ছবি গাইড, photo size guide, image format tutorial">
   <meta name="author" content="${SITE.bn} | ${SITE.en}">
   <meta name="theme-color" content="#0f766e">
-  <link rel="canonical" href="${DOMAIN}/blog.html">
+  <link rel="canonical" href="${pageUrl("blog.html")}">
   <link rel="alternate" type="application/rss+xml" title="${SITE.en} — Photo Guides" href="${DOMAIN}/feed.xml">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta property="og:type" content="website">
@@ -856,7 +871,7 @@ function blogIndex() {
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:title" content="ছবি ফটো গাইড | Photo Editing Guides & Tutorials">
   <meta property="og:description" content="ছবি ছোট করা, পাসপোর্ট সাইজ ও ফরম্যাট — সহজ বাংলা ও ইংরেজি গাইড।">
-  <meta property="og:url" content="${DOMAIN}/blog.html">
+  <meta property="og:url" content="${pageUrl("blog.html")}">
   <meta property="og:image" content="${DOMAIN}/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
@@ -927,12 +942,12 @@ function llmsTxt() {
     .map((t) => {
       const name = t.en || t.h1en || t.title.split("|")[0].trim();
       const desc = t.descEn || t.shortDescEn || t.title.split("|")[1] || "";
-      return `- [${name}](${DOMAIN}/${t.slug}): ${desc}`;
+      return `- [${name}](${pageUrl(t.slug)}): ${desc}`;
     })
     .join("\n");
 
   const postLines = POSTS.map(
-    (p) => `- [${p.h1en}](${DOMAIN}/${p.slug}): ${p.descEn}`
+    (p) => `- [${p.h1en}](${pageUrl(p.slug)}): ${p.descEn}`
   ).join("\n");
 
   return `# ${SITE.en} (${SITE.bn})
@@ -945,8 +960,8 @@ function llmsTxt() {
 > Indonesian, Portuguese, Russian, Turkish and Chinese.
 
 Home: ${DOMAIN}/
-All tools: ${DOMAIN}/tools.html
-Guides: ${DOMAIN}/blog.html
+All tools: ${pageUrl("tools.html")}
+Guides: ${pageUrl("blog.html")}
 
 ## Tools
 ${toolLines}
@@ -967,16 +982,16 @@ ${postLines}
 /* ---------- Sitemap ---------- */
 function sitemap() {
   const urls = [
-    ...LEGACY.map((l) => ({ loc: l.slug === "index.html" ? "/" : l.slug, priority: l.slug === "index.html" ? "1.0" : "0.9" })),
-    { loc: "tools.html", priority: "0.9" },
-    ...TOOLS.map((t) => ({ loc: t.slug, priority: "0.8" })),
-    { loc: "blog.html", priority: "0.8" },
-    ...POSTS.map((p) => ({ loc: p.slug, priority: "0.7" }))
+    ...LEGACY.map((l) => ({ loc: cleanPath(l.slug), priority: l.slug === "index.html" ? "1.0" : "0.9" })),
+    { loc: cleanPath("tools.html"), priority: "0.9" },
+    ...TOOLS.map((t) => ({ loc: cleanPath(t.slug), priority: "0.8" })),
+    { loc: cleanPath("blog.html"), priority: "0.8" },
+    ...POSTS.map((p) => ({ loc: cleanPath(p.slug), priority: "0.7" }))
   ];
   const body = urls
     .map(
       (u) => `  <url>
-    <loc>${DOMAIN}${u.loc.startsWith("/") ? "" : "/"}${u.loc}</loc>
+    <loc>${DOMAIN}${u.loc}</loc>
     <lastmod>${LASTMOD}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${u.priority}</priority>
@@ -1002,8 +1017,8 @@ function rss() {
   const items = POSTS.map(
     (p) => `    <item>
       <title>${esc(p.title)}</title>
-      <link>${DOMAIN}/${p.slug}</link>
-      <guid isPermaLink="true">${DOMAIN}/${p.slug}</guid>
+      <link>${pageUrl(p.slug)}</link>
+      <guid isPermaLink="true">${pageUrl(p.slug)}</guid>
       <pubDate>${new Date(p.date + "T09:00:00Z").toUTCString()}</pubDate>
       <description>${esc(p.descEn)}</description>
       <category>Photo tips</category>
@@ -1014,7 +1029,7 @@ function rss() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${esc(`${SITE.bn} | ${SITE.en}`)} — Photo Guides</title>
-    <link>${DOMAIN}/blog.html</link>
+    <link>${pageUrl("blog.html")}</link>
     <atom:link href="${DOMAIN}/feed.xml" rel="self" type="application/rss+xml" />
     <description>${esc("Practical bilingual guides on photo size, formats and privacy.")}</description>
     <language>en</language>

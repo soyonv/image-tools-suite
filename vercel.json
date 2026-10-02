@@ -5,6 +5,11 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/:page((?!google)[a-z0-9-]+)\\.html",
+      "destination": "/:page",
+      "permanent": true
     }
   ],
   "headers": [

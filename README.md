@@ -86,7 +86,7 @@ scripts/
   sync-domain.mjs     repoints the hand-written pages and robots.txt
   linkgraph.mjs       rewrites the link sections inside the hand-written pages
   stage.mjs           copies the static site into dist/
-  verify.mjs          post-build check of dist/ (tag coverage, token file, drift)
+  verify.mjs          post-build check of dist/ (clean canonicals, tag coverage, drift)
 site.config.json      the site's domain + Search Console token — single source of truth
 google<token>.html    Search Console verification file (generated)
 server.js             zero-dependency static server for local preview
@@ -110,6 +110,31 @@ Perplexity-User, Google-Extended, Applebot-Extended, CCBot,
 meta-externalagent and Bytespider. `llms.txt` lists every tool and guide with
 the key facts (the 16 MB WhatsApp cap, 300 DPI = 413×531 px, client-side-only
 processing, 12 languages) so assistants can cite the site accurately.
+
+### 🔗 একটাই ঠিকানা / One canonical URL per page
+
+The canonical address of a page is the **clean** one — `/compress-image`, never
+`/compress-image.html`. Netlify answers both forms with a `200`, so without a
+decision every page would have two live URLs and would split its own link equity
+between them.
+
+- `<link rel="canonical">`, `og:url`, `sitemap.xml`, `feed.xml`, `llms.txt` and
+  every schema `url` / `@id` are generated clean, via `pageUrl()` in
+  `scripts/generate.mjs`.
+- The seven hand-written pages carry literal URLs, so `scripts/sync-domain.mjs`
+  normalises the path as well as the host — otherwise a correctly changed domain
+  would leave a `.html` canonical behind, which is exactly the "looks done but is
+  half applied" bug it exists to prevent.
+- `/_redirects` and `vercel.json` 301 the `.html` form onto the canonical. The
+  Search Console token file is passed through *before* that wildcard, because
+  Google fetches that exact filename.
+- `npm run verify` fails the build if any page keeps a `.html` canonical, has
+  two of them, or if the token pass-through goes missing from `_redirects`.
+
+The `.html` file on disk and the `.html` hrefs in the markup are deliberately
+left alone: it is the only form that works on every static host, including
+GitHub Pages and a plain `file://` open. `server.js` resolves clean URLs the way
+Netlify does, so local preview matches production.
 
 ### 🕸️ লিংক গ্রাফ / Link graph
 
@@ -338,8 +363,10 @@ database or service — the build *is* the test:
    so the committed `dist/` can never drift from the deployed artefact.
 
 `npm run verify` is deliberately not a rubber stamp: deleting the tag from a
-page, deleting the token file, corrupting its content, or hand-editing
-`dist/index.html` each make it exit 1 and name the file.
+page, deleting the token file, corrupting its content, hand-editing
+`dist/index.html`, reintroducing a `.html` canonical, duplicating a canonical
+tag, or removing the token pass-through from `_redirects` each make it exit 1 and
+name the file.
 
 ---
 

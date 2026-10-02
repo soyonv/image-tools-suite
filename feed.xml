@@ -2,79 +2,79 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ছবির সহায়ক | Photo Sahayak — Photo Guides</title>
-    <link>https://photosahayak.netlify.app/blog.html</link>
+    <link>https://photosahayak.netlify.app/blog</link>
     <atom:link href="https://photosahayak.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Practical bilingual guides on photo size, formats and privacy.</description>
     <language>en</language>
     <lastBuildDate>Thu, 01 Oct 2026 09:00:00 GMT</lastBuildDate>
     <item>
       <title>হোয়াটসঅ্যাপে ছবি পাঠানোর আগে সাইজ কমান — WhatsApp Photo Size Guide</title>
-      <link>https://photosahayak.netlify.app/whatsapp-photo-size.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/whatsapp-photo-size.html</guid>
+      <link>https://photosahayak.netlify.app/whatsapp-photo-size</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/whatsapp-photo-size</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>WhatsApp will not send your photo? A step-by-step guide to getting any image under WhatsApp's 16 MB limit, with the exact quality and size settings that keep it looking sharp.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>পাসপোর্ট সাইজ ছবি — বাংলাদেশ ও ভিসার নিয়ম | Passport Photo Size Guide</title>
-      <link>https://photosahayak.netlify.app/passport-photo-size-guide.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/passport-photo-size-guide.html</guid>
+      <link>https://photosahayak.netlify.app/passport-photo-size-guide</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/passport-photo-size-guide</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>Everything about passport photo sizes: exact millimetre dimensions for Bangladesh and international applications, 300 DPI printing, correct head position, background colour and common rejection reasons.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>WebP vs JPG vs PNG — কোন ফরম্যাট কখন ব্যবহার করবেন | Image Format Guide</title>
-      <link>https://photosahayak.netlify.app/webp-vs-jpg-vs-png.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/webp-vs-jpg-vs-png.html</guid>
+      <link>https://photosahayak.netlify.app/webp-vs-jpg-vs-png</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/webp-vs-jpg-vs-png</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>A plain-English comparison of JPG, PNG and WebP: how each compresses, which supports transparency, which browsers accept them, and which format to pick for photos, logos, screenshots and the web.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>ছবি পোস্ট করার আগে লোকেশন মুছে ফেলুন | Remove EXIF &amp; GPS Data from Photos</title>
-      <link>https://photosahayak.netlify.app/remove-photo-location-before-posting.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/remove-photo-location-before-posting.html</guid>
+      <link>https://photosahayak.netlify.app/remove-photo-location-before-posting</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/remove-photo-location-before-posting</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>Every phone photo silently records where and when it was taken. Learn what EXIF data exposes, when it genuinely matters, and how to remove all of it in one click before sharing.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>অনলাইন ফর্মে ছবি আপলোড করার সঠিক সাইজ | Compress Image for Online Form 20-200KB</title>
-      <link>https://photosahayak.netlify.app/how-to-compress-image-for-online-form.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/how-to-compress-image-for-online-form.html</guid>
+      <link>https://photosahayak.netlify.app/how-to-compress-image-for-online-form</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/how-to-compress-image-for-online-form</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>Online forms rejecting your photo over file size? Learn how to compress an image to an exact 20KB, 50KB, 100KB or 200KB target for government forms, exam portals and job applications — with the pixel sizes that actually work.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>ছবির ব্যাকগ্রাউন্ড সাদা করার সহজ উপায় | Change Photo Background Color</title>
-      <link>https://photosahayak.netlify.app/remove-photo-background-online.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/remove-photo-background-online.html</guid>
+      <link>https://photosahayak.netlify.app/remove-photo-background-online</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/remove-photo-background-online</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>Need a plain white or coloured background for a passport photo, a product listing or a form upload? Change the colour behind your subject in your browser — no resize, no install, no upload.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>অ্যান্ড্রয়েডে ছবি এডিট করার সহজ উপায় | How to Edit Photos on Android Without an App</title>
-      <link>https://photosahayak.netlify.app/photo-look-better-in-photo-editor.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/photo-look-better-in-photo-editor.html</guid>
+      <link>https://photosahayak.netlify.app/photo-look-better-in-photo-editor</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/photo-look-better-in-photo-editor</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>Edit photos straight from your Android gallery in the browser — brightness, contrast, saturation, blur, sepia and black-and-white — without installing a single app or giving up your photos to an uploader.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>ইনস্টাগ্রাম ছবির সাইজ — পোস্ট, স্টোরি ও প্রোফাইল | Instagram Photo Size Guide</title>
-      <link>https://photosahayak.netlify.app/instagram-photo-size.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/instagram-photo-size.html</guid>
+      <link>https://photosahayak.netlify.app/instagram-photo-size</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/instagram-photo-size</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>Instagram cropping your photo? Here are the exact pixel sizes for a feed post (1080×1350), a story (1080×1920), a reel cover and a profile picture, and how to resize without losing quality.</description>
       <category>Photo tips</category>
     </item>
     <item>
       <title>JPG কোয়ালিটি ৮০ মানে কী? কীভাবে কম ফাইলে ভালো ছবি পাবেন</title>
-      <link>https://photosahayak.netlify.app/jpeg-vs-png-quality.html</link>
-      <guid isPermaLink="true">https://photosahayak.netlify.app/jpeg-vs-png-quality.html</guid>
+      <link>https://photosahayak.netlify.app/jpeg-vs-png-quality</link>
+      <guid isPermaLink="true">https://photosahayak.netlify.app/jpeg-vs-png-quality</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
       <description>What does JPG quality 80 really mean? Learn how the quality number maps to visible quality, where the eye stops noticing, and how to pick the lowest setting that still looks perfect — which is how you cut file size in half.</description>
       <category>Photo tips</category>
