@@ -107,6 +107,78 @@ a:hover { text-decoration: underline; }
 }
 .lang-toggle:hover { border-color: var(--brand); background: var(--brand-soft); }
 
+/* Language picker (built by js/i18n.js, replaces the old toggle button) */
+.lang-select {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  max-width: 190px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.lang-select:hover { border-color: var(--brand); background: var(--brand-soft); }
+.lang-select:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+/* Each option is rendered in its own script. */
+.lang-select option { font-family: var(--font); }
+
+/* ---------- Blog posts ---------- */
+.post { padding-bottom: 8px; }
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 6px;
+}
+.post-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+.post-icon svg { width: 20px; height: 20px; }
+.post-section { margin: 26px 0; }
+.post-section h2 {
+  font-size: 1.22rem;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.post-body {
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin: 0 0 12px;
+}
+.post-list {
+  margin: 0 0 12px;
+  padding-inline-start: 20px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+.post-list li { margin-bottom: 6px; }
+.post .tool-panel { margin-top: 30px; }
+.post .tool-panel h2 { font-size: 1.15rem; margin: 0 0 6px; }
+
+/* Right-to-left languages (Arabic, Urdu) */
+[dir="rtl"] body { font-family: "Noto Sans Arabic", "Noto Naskh Arabic", var(--font); }
+/* Mirror decorative arrows so they point the right way. */
+[dir="rtl"] .go,
+[dir="rtl"] .eyebrow { unicode-bidi: plaintext; }
+[dir="rtl"] .dz-icon,
+[dir="rtl"] .tool-card .icon { transform: scaleX(-1); }
+[dir="rtl"] .compare-box.after { direction: ltr; text-align: start; }
+[dir="rtl"] .steps { direction: rtl; }
+[dir="rtl"] .steps li { text-align: right; }
+
 .nav-toggle {
   display: grid;
   place-items: center;
@@ -266,6 +338,11 @@ a:hover { text-decoration: underline; }
 .tool-card h3 { margin: 2px 0 0; font-size: 1.1rem; line-height: 1.45; }
 .tool-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
 .tool-card .go { margin-top: auto; font-weight: 600; font-size: 0.9rem; color: var(--brand); }
+
+/* Guide cards reuse the tool card so a block of guides and a block of
+   tools read as one system, but keep one accent colour for the whole
+   block so the two are distinguishable at a glance. */
+.tool-card.guide-card .icon { background: var(--accent-soft); color: #92500a; }
 
 /* ---------- Trust strip ---------- */
 .trust-strip {

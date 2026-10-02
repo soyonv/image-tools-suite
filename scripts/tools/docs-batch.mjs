@@ -74,7 +74,10 @@ ${slider("pdfQuality", "কোয়ালিটি", "Quality", 50, 100, 92, "%
       { qbn: "ছবি কি PDF বানাতে আপলোড হয়?", qen: "Are the images uploaded to build the PDF?", abn: "না। পুরো PDF ফাইলটি আপনার ব্রাউজারেই তৈরি হয়, কোনো ছবি সার্ভারে যায় না।", aen: "No. The PDF is assembled entirely inside your browser — no image is sent to any server.", },
       { qbn: "একসাথে কয়টি ছবি যোগ করা যায়?", qen: "How many images can I combine?", abn: "যত খুশি। তবে ফোনে বড় সংখ্যা ছবি হলে ব্রাউজারের মেমরির কথা মাথায় রাখুন।", aen: "As many as you like — though very large batches on a phone can hit browser memory limits.", },
       { qbn: "PDF-এ কি কোয়ালিটি কমবে?", qen: "Does quality drop in the PDF?", abn: "ছবি JPEG হিসেবে বসে, তাই কোয়ালিটি স্লাইডারে নিয়ন্ত্রণ করা যায় এবং প্রায় কোনো দৃশ্যমান ক্ষতি হয় না।", aen: "Images are embedded as JPEG, so the quality slider controls the tradeoff with almost no visible loss." },
-      { qbn: "ফাইলের নাম কী হবে?", qen: "What will the file be called?", abn: "আপনার প্রথম ছবির নাম থেকে তৈরি, যেমন `photo.pdf`।", aen: "It is named after your first image, for example `photo.pdf`." }
+      { qbn: "ফাইলের নাম কী হবে?", qen: "What will the file be called?", abn: "আপনার প্রথম ছবির নাম থেকে তৈরি, যেমন `photo.pdf`।", aen: "It is named after your first image, for example `photo.pdf`." },
+      { qbn: "PDF ফাইলের সাইজ কতটা বড় হবে?", qen: "How large will the PDF be?", abn: "প্রায় ছবিগুলোর মোট ফাইল সাইজের কাছাকাছি। খুব ছোট PDF চাইলে আগে ছবিগুলো কমপ্রেস করে নিন।", aen: "Roughly the combined size of the images. If you need a small PDF, compress the images first.", },
+      { qbn: "PDF-তে ছবির ক্রম কি বদলানো যায়?", qen: "Can I reorder the images in the PDF?", abn: "হ্যাঁ — ছবি তালিকায় টেনে নতুন ছবির উপরে বা নিচে সরান। ক্রম অনুযায়ী PDF-তে পেজ বসবে।", aen: "Yes — drag the thumbnails to change the order, and the pages follow that sequence." },
+
     ]
   },
 
@@ -142,7 +145,10 @@ ${slider("batchQuality", "কোয়ালিটি", "Quality", 20, 95, 70, "
       { qbn: "একসাথে কত ছবি নেওয়া যায়?", qen: "How many images can I process at once?", abn: "ব্রাউজারের ওপর নির্ভর করে — সাধারণত ২০–৫০টি ছবি একসাঙ্গে সামলানো যায়। খুব বড় ব্যাচ ভাগ করে নিন।", aen: "It depends on the browser — 20–50 images at once is comfortable. Split very large batches." },
       { qbn: "ZIP ফাইলে কি কিছু কমানো হয়?", qen: "Is the ZIP compressed?", abn: "ZIP-টি দ্রুততার জন্য store মোডে তৈরি হয়; ছবি ইতিমধ্যেই কম্প্রেসড ফাইল, তাই আলাদা কম্প্রেশনের দরকার হয় না।", aen: "The ZIP is created in store mode for speed — images are already compressed, so extra compression is unnecessary." },
       { qbn: "ছবিগুলো কি একে অপরের উপর প্রভাব ফেলে?", qen: "Do the images affect each other?", abn: "না, প্রতিটি ছবি আলাদাভাবে প্রসেস হয় এবং আলাদা নামে ডাউনলোড হয়।", aen: "No. Each image is processed independently and downloaded separately." },
-      { qbn: "ব্যাচ প্রসেসিং কি আপলোড ছাড়াই?", qen: "Is batch processing upload-free?", abn: "হ্যাঁ, সব ছবি আপনার ডিভাইসেই প্রসেস হয় এবং ZIP ও সেই ডিভাইসেই তৈরি হয়।", aen: "Yes — every image and the resulting ZIP are created on your device." }
+      { qbn: "ব্যাচ প্রসেসিং কি আপলোড ছাড়াই?", qen: "Is batch processing upload-free?", abn: "হ্যাঁ, সব ছবি আপনার ডিভাইসেই প্রসেস হয় এবং ZIP ও সেই ডিভাইসেই তৈরি হয়।", aen: "Yes — every image and the resulting ZIP are created on your device." },
+      { qbn: "একসাঙ্গে সর্বোচ্চ কতটি ছবি নেওয়া যায়?", qen: "How many images can I process at once?", abn: "কোনো কঠিন সীমা নেই, তবে ফোনের মেমোরি ও ব্রাউজারের সাপোর্টের উপর নির্ভর করে। ২০–৫০টি ছবি সাধারণত নির্বিঘ্নে চলে।", aen: "No hard limit, though it depends on your phone's memory and the browser. 20–50 images usually run smoothly." },
+      { qbn: "ব্যাচ প্রসেসিং ধীর হলে কী করব?", qen: "What if batch processing feels slow?", abn: "প্রতিটি ছবি Canvas-এ আলাদাভাবে প্রসেস হয়, তাই অনেক ছবিতে সময় লাগে। ফল একসাঙ্গে না দেখে ধাপে ধাপে চালালে দ্রুত হয়।", aen: "Each image is processed separately on the Canvas, which takes time in bulk. Processing in smaller batches feels faster." },
+
     ]
   }
 ];

@@ -38,7 +38,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -106,9 +106,7 @@
       outputName = PT.baseName(PT.state.file.name) + "-" + shape + "-" + S + ".png";
       sizeAfter.textContent = PT.formatBytes(blob.size);
       dimAfter.textContent = S + " × " + S + " px (PNG)";
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Adjust zoom and position, then download the PNG."
-        : "জুম ও অবস্থান ঠিক করে PNG ডাউনলোড করুন।";
+      statusEl.textContent = PT.pick("Adjust zoom and position, then download the PNG.", "জুম ও অবস্থান ঠিক করে PNG ডাউনলোড করুন।");
     }).catch(function () { /* ignore */ });
   }
 

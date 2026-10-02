@@ -1,0 +1,10 @@
+# Netlify / Cloudflare Pages redirects
+#
+# The homepage is canonically "/" (see site.config.json), but a static host
+# will happily serve /index.html as well. Two live URLs for one page splits
+# the site's own signals, so the .html form is 301'd to the clean root.
+
+/index.html   /   301
+
+# Defensive: the other common spelling of the same file.
+/index.htm    /   301

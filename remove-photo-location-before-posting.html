@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove EXIF & GPS Data from Photos</title>
+  <meta name="description" content="Every phone photo silently records where and when it was taken. Learn what EXIF data exposes, when it genuinely matters, and how to remove all of it in one…">
+  <meta name="keywords" content="remove exif data, remove gps from photo, photo metadata remover, ছবির লোকেশন মুছুন, strip metadata before posting">
+  <meta name="author" content="ছবির সহায়ক | Photo Sahayak">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="canonical" href="https://photosahayak.netlify.app/remove-photo-location-before-posting.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ছবির সহায়ক | Photo Sahayak">
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="ছবি পোস্ট করার আগে লোকেশন মুছে ফেলুন | Remove EXIF & GPS Data from Photos">
+  <meta property="og:description" content="ফোনের ছবিতে GPS লোকেশন, ক্যামেরা মডেল ও সময় লুকানো থাকে। সোশ্যাল মিডিয়ায় ছবি দেওয়ার আগে EXIF ডেটা মুছে ফেলার সহজ উপায়। Your phone photos secretly record GPS location, camera model and timestamp. Here is how to strip that EXIF data before posting online.">
+  <meta property="og:url" content="https://photosahayak.netlify.app/remove-photo-location-before-posting.html">
+  <meta property="og:image" content="https://photosahayak.netlify.app/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Remove Photo Location Before You Post">
+  <meta property="article:published_time" content="2026-10-01">
+  <meta property="article:section" content="Image editing guides">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ছবি পোস্ট করার আগে লোকেশন মুছে ফেলুন | Remove EXIF & GPS Data from Photos">
+  <meta name="twitter:description" content="ফোনের ছবিতে GPS লোকেশন, ক্যামেরা মডেল ও সময় লুকানো থাকে। সোশ্যাল মিডিয়ায় ছবি দেওয়ার আগে EXIF ডেটা মুছে ফেলার সহজ উপায়। Your phone photos secretly record GPS location, camera model and timestamp. Here is how to strip that EXIF data before posting online.">
+  <meta name="twitter:image" content="https://photosahayak.netlify.app/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://photosahayak.netlify.app/remove-photo-location-before-posting.html#article",
+  "headline": "Remove Photo Location Before You Post",
+  "url": "https://photosahayak.netlify.app/remove-photo-location-before-posting.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://photosahayak.netlify.app/remove-photo-location-before-posting.html"
+  },
+  "description": "Every phone photo silently records where and when it was taken. Learn what EXIF data exposes, when it genuinely matters, and how to remove all of it in one click before sharing.",
+  "inLanguage": [
+    "bn",
+    "en"
+  ],
+  "keywords": "remove exif data, remove gps from photo, photo metadata remover, ছবির লোকেশন মুছুন, strip metadata before posting",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "wordCount": 365,
+  "isAccessibleForFree": true,
+  "image": "https://photosahayak.netlify.app/og-image.png",
+  "author": {
+    "@type": "Organization",
+    "name": "ছবির সহায়ক (Photo Sahayak)",
+    "url": "https://photosahayak.netlify.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ছবির সহায়ক (Photo Sahayak)",
+    "url": "https://photosahayak.netlify.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://photosahayak.netlify.app/favicon.svg"
+    }
+  },
+  "articleSection": "Image editing guides",
+  "articleBody": "What is actually hidden inside a photo? EXIF data is a hidden information block stored inside the photo file. It commonly holds your **GPS location**, the camera and phone model, the exact date and time, camera settings, and sometimes the device owner's name. It never appears in the filename, so most people do not realise they are publishing their exact whereabouts every time they share a picture. When does removing it actually matter? The risk is highest for photos taken at home, photos of children, and pictures of the front of your house. Stripping location data stops strangers from tracing an address back to you. Stock shots, memes and heavily edited images carry far less risk — but removing the data never hurts. Remove it in three steps 1. Add the photo you plan to share. 2. Choose **JPG or PNG** output and keep the quality high — stripping metadata never alters the actual pixels. 3. Download the new file and share that one instead. Does this damage the photo? No. The tool re-encodes the image through the Canvas, which drops the entire EXIF block. The **actual pixels stay identical** — only the invisible information block is removed. Note that re-saving does mean a JPEG gets recompressed very slightly. If you want to avoid even that, choose PNG output. How do I remove GPS location from a photo? Simply saving the image again drops the EXIF block. Our metadata tool does it for you in one click. Does removing metadata reduce quality? The pixels are untouched — only the information block goes. JPG output is very slightly recompressed; PNG avoids that entirely. Do all photos contain GPS data? Photos taken with a smartphone camera almost always do. Screenshots or images from other apps may not. Is the photo uploaded to a server? Never — reading and stripping the file happens entirely inside your browser. Do I lose location data I might want later? Once stripped it is gone from that file, so keep the untouched original somewhere safe first. Can I remove GPS but keep the other EXIF data? This tool strips the whole EXIF block at once, which is the safest option before sharing."
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://photosahayak.netlify.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://photosahayak.netlify.app/blog.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Remove Photo Location Before You Post",
+      "item": "https://photosahayak.netlify.app/remove-photo-location-before-posting.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": [
+    "bn",
+    "en"
+  ],
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ছবি থেকে GPS লোকেশন কীভাবে মুছব? / How do I remove GPS location from a photo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ছবিটি আবার সেভ করলেই EXIF ব্লক সরে যায়। আমাদের মেটাডেটা টুলটি এটি এক ক্লিকে করে দেয়। Simply saving the image again drops the EXIF block. Our metadata tool does it for you in one click."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "মেটাডেটা মুছলে কি ছবির মান কমে? / Does removing metadata reduce quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "পিক্সেল অপরিবর্তিত থাকে। শুধু তথ্যবলী বাদ যায়। JPG নির্বাচন করলে সামান্য পুনরায়-কম্প্রেস হতে পারে, PNG দিলে তা হয় না। The pixels are untouched — only the information block goes. JPG output is very slightly recompressed; PNG avoids that entirely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "সব ছবিতেই কি GPS তথ্য থাকে? / Do all photos contain GPS data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "স্মার্টফোনের ক্যামেরা দিয়ে তোলা ছবিতে প্রায় সবসময় থাকে। স্ক্রিনশট বা অন্য অ্যাপের ছবিতে নাও থাকতে পারে। Photos taken with a smartphone camera almost always do. Screenshots or images from other apps may not."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ছবি কি কোথাও আপলোড হয়? / Is the photo uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "কখনোই না — ফাইল পড়া থেকে মুছে ফেলা, সবই আপনার ব্রাউজারে ঘটে। Never — reading and stripping the file happens entirely inside your browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "মুছে ফেলার পর কি আবার লোকেশন চাই? / Do I lose location data I might want later?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "একবার মুছলে সেই ফাইলে আর থাকে না, তাই প্রয়োজন হলে মূল ছবিটি আগে নিরাপদে রেখে দিন। Once stripped it is gone from that file, so keep the untouched original somewhere safe first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "শুধু GPS ছাড়া বাকি তথ্য কি থাকে? / Can I remove GPS but keep the other EXIF data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "এই টুলটি সব EXIF তথ্য একসাঙ্গে মুছে দেয়, যা শেয়ার করার আগে সবচেয়ে নিরাপদ। This tool strips the whole EXIF block at once, which is the safest option before sharing."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2.2"/><path d="m3 17 5-4.5 4 3.5 3.5-3 5.5 5"/></svg></span>
+        <span>
+          <span data-bn="ছবির সহায়ক" data-en="Photo Sahayak">ছবির সহায়ক</span>
+          <small data-bn="ফ্রি অনলাইন ফটো টুলস" data-en="Free online photo tools">ফ্রি অনলাইন ফটো টুলস</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <button class="lang-toggle" id="langToggle" type="button">EN</button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" data-bn-aria="মেনু খুলুন" data-en-aria="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html" data-bn="হোম" data-en="Home">হোম</a></li>
+            <li><a href="resize-image.html" data-bn="সাইজ পরিবর্তন" data-en="Resize">সাইজ পরিবর্তন</a></li>
+            <li><a href="compress-image.html" data-bn="ছবি কমান" data-en="Compress">ছবি কমান</a></li>
+            <li><a href="png-to-jpg.html" data-bn="ফরম্যাট" data-en="Convert">ফরম্যাট</a></li>
+            <li><a href="crop-image.html" data-bn="ক্রপ" data-en="Crop">ক্রপ</a></li>
+            <li><a href="passport-photo.html" data-bn="পাসপোর্ট" data-en="Passport">পাসপোর্ট</a></li>
+            <li><a href="tools.html" data-bn="সব টুল" data-en="All tools">সব টুল</a></li>
+            <li><a href="blog.html" data-bn="ব্লগ" data-en="Blog">ব্লগ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="container page-head post">
+      <p class="post-meta">
+        <span class="post-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <time datetime="2026-10-01">2026-10-01</time>
+        <span data-bn="৩ মিনিটের পড়া" data-en="3 min read">৩ মিনিটের পড়া</span>
+      </p>
+      <h1 data-bn="ছবি পোস্ট করার আগে লোকেশন মুছে ফেলুন" data-en="Remove Photo Location Before You Post">ছবি পোস্ট করার আগে লোকেশন মুছে ফেলুন</h1>
+      <p class="subtitle" data-bn="প্রতিটি ফোনের ছবিতে কোথায় ও কখন তোলা হয়েছে তার লুকানো তথ্য থাকে — এবং সেটি কীভাবে সরবেন।" data-en="Every photo from your phone quietly records where and when it was taken. Here is what that reveals and how to erase it.">প্রতিটি ফোনের ছবিতে কোথায় ও কখন তোলা হয়েছে তার লুকানো তথ্য থাকে — এবং সেটি কীভাবে সরবেন।</p>
+
+      <section class="post-section">
+        <h2 data-bn="ছবিতে কী কী তথ্য লুকানো থাকে?" data-en="What is actually hidden inside a photo?">ছবিতে কী কী তথ্য লুকানো থাকে?</h2>
+          <div class="post-body" data-bn="EXIF ডেটা হলো ছবির ভেতরে লুকানো একটি তথ্যবলী। এতে সাধারণত থাকে — GPS লোকেশন, ক্যামেরা ও ফোনের মডেল, ছবি তোলার সময় ও তারিখ, ক্যামেরা সেটিংস, এবং কখনো কখনো ডিভাইসের মালিকের নাম। সবসময় ফাইলের নামে দেখা যায় না, তাই বেশিরভাগ মানুষ জানেনই না যে তারা ছবি শেয়ার করার সময় নিজের অবস্থান প্রকাশ করে ফেলছেন।" data-en="EXIF data is a hidden information block stored inside the photo file. It commonly holds your GPS location, the camera and phone model, the exact date and time, camera settings, and sometimes the device owner's name. It never appears in the filename, so most people do not realise they are publishing their exact whereabouts every time they share a picture.">EXIF ডেটা হলো ছবির ভেতরে লুকানো একটি তথ্যবলী। এতে সাধারণত থাকে — GPS লোকেশন, ক্যামেরা ও ফোনের মডেল, ছবি তোলার সময় ও তারিখ, ক্যামেরা সেটিংস, এবং কখনো কখনো ডিভাইসের মালিকের নাম। সবসময় ফাইলের নামে দেখা যায় না, তাই বেশিরভাগ মানুষ জানেনই না যে তারা ছবি শেয়ার করার সময় নিজের অবস্থান প্রকাশ করে ফেলছেন।</div>
+      </section>
+
+      <section class="post-section">
+        <h2 data-bn="কখন লোকেশন মুছে ফেলা উচিত?" data-en="When does removing it actually matter?">কখন লোকেশন মুছে ফেলা উচিত?</h2>
+          <div class="post-body" data-bn="ঘরের ভেতরের ছবি, সন্তানের ছবি, বা বাসায় প্রবেশের সামনের ছবি শেয়ার করার আগে অবস্থান তথ্য সরিয়ে নেওয়া সবচেয়ে জরুরি। এতে অচেনা কেউ আপনার ঠিকানা বের করতে পারে না। স্যাম্পল বা স্টক ছবি, মজার মিম, এবং পুরোপুরি পরিবর্তিত ছবিতে ঝুঁকি কম — তবে মুছে ফেলা সবসময় নিরাপদ।" data-en="The risk is highest for photos taken at home, photos of children, and pictures of the front of your house. Stripping location data stops strangers from tracing an address back to you. Stock shots, memes and heavily edited images carry far less risk — but removing the data never hurts.">ঘরের ভেতরের ছবি, সন্তানের ছবি, বা বাসায় প্রবেশের সামনের ছবি শেয়ার করার আগে অবস্থান তথ্য সরিয়ে নেওয়া সবচেয়ে জরুরি। এতে অচেনা কেউ আপনার ঠিকানা বের করতে পারে না। স্যাম্পল বা স্টক ছবি, মজার মিম, এবং পুরোপুরি পরিবর্তিত ছবিতে ঝুঁকি কম — তবে মুছে ফেলা সবসময় নিরাপদ।</div>
+      </section>
+
+      <section class="post-section">
+        <h2 data-bn="তিন ধাপে মুছে ফেলুন" data-en="Remove it in three steps">তিন ধাপে মুছে ফেলুন</h2>
+          <div class="post-body" data-bn="১. যে ছবিটি শেয়ার করতে চান সেটি আপলোড করুন। ২. JPG বা PNG আউটপুট বেছে নিন এবং হাই কোয়ালিটি রাখুন — মেটাডেটা মুছতে ছবির পিক্সেল পরিবর্তন হয় না। ৩. নতুন ফাইলটি ডাউনলোড করে সেটিই শেয়ার করুন।" data-en="1. Add the photo you plan to share. 2. Choose JPG or PNG output and keep the quality high — stripping metadata never alters the actual pixels. 3. Download the new file and share that one instead.">১. যে ছবিটি শেয়ার করতে চান সেটি আপলোড করুন। ২. JPG বা PNG আউটপুট বেছে নিন এবং হাই কোয়ালিটি রাখুন — মেটাডেটা মুছতে ছবির পিক্সেল পরিবর্তন হয় না। ৩. নতুন ফাইলটি ডাউনলোড করে সেটিই শেয়ার করুন।</div>
+      </section>
+
+      <section class="post-section">
+        <h2 data-bn="এটি কি আপনার ছবি নষ্ট করে?" data-en="Does this damage the photo?">এটি কি আপনার ছবি নষ্ট করে?</h2>
+          <div class="post-body" data-bn="না। টুলটি ছবিটিকে Canvas দিয়ে আবার এনকোড করে, ফলে EXIF ব্লকটি পুরোপুরি বাদ পড়ে যায়। ছবির পিক্সেল অপরিবর্তিত থাকে — শুধু ছবির সঙ্গে থাকা অদৃশ্য তথ্যবলীটি চলে যায়। তবে মনে রাখবেন, ছবি পুরোপুরি পুনরায়-সংরক্ষণ করা হয়, তাই একটি JPG ফাইলের ক্ষেত্রে সামান্য কম্প্রেসন পার্থক্য হতে পারে। আপনি চাইলে PNG বেছে নিয়ে তা এড়াতে পারেন।" data-en="No. The tool re-encodes the image through the Canvas, which drops the entire EXIF block. The actual pixels stay identical — only the invisible information block is removed. Note that re-saving does mean a JPEG gets recompressed very slightly. If you want to avoid even that, choose PNG output.">না। টুলটি ছবিটিকে Canvas দিয়ে আবার এনকোড করে, ফলে EXIF ব্লকটি পুরোপুরি বাদ পড়ে যায়। ছবির পিক্সেল অপরিবর্তিত থাকে — শুধু ছবির সঙ্গে থাকা অদৃশ্য তথ্যবলীটি চলে যায়। তবে মনে রাখবেন, ছবি পুরোপুরি পুনরায়-সংরক্ষণ করা হয়, তাই একটি JPG ফাইলের ক্ষেত্রে সামান্য কম্প্রেসন পার্থক্য হতে পারে। আপনি চাইলে PNG বেছে নিয়ে তা এড়াতে পারেন।</div>
+      </section>
+
+      <section class="tool-panel">
+        <h2 data-bn="এই গাইডের জন্য প্রয়োজনীয় টুল" data-en="Tools for this guide">এই গাইডের জন্য প্রয়োজনীয় টুল</h2>
+        <p data-bn="সব ফ্রি, আর কোনো আপলোড ছাড়াই — সরাসরি ব্রাউজারে কাজ করে।" data-en="All free and upload-free — they run straight in your browser.">সব ফ্রি, আর কোনো আপলোড ছাড়াই — সরাসরি ব্রাউজারে কাজ করে।</p>
+        <div class="tool-grid">
+          <a class="tool-card" href="strip-metadata.html">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2.2"/><path d="m3 17 5-4.5 4 3.5 3.5-3 5.5 5"/></svg></span>
+            <h3 data-bn="ছবির মেটাডেটা ও EXIF মুছুন (Strip Metadata)" data-en="Remove EXIF & Photo Metadata">ছবির মেটাডেটা ও EXIF মুছুন (Strip Metadata)</h3>
+            <p data-bn="GPS ও ক্যামেরা তথ্য সরিয়ে প্রাইভেটি রাখুন।" data-en="Remove GPS and camera info to stay private.">GPS ও ক্যামেরা তথ্য সরিয়ে প্রাইভেটি রাখুন।</p>
+            <span class="go" data-bn="টুল খুলুন →" data-en="Open tool →">টুল খুলুন →</span>
+          </a>
+          <a class="tool-card" href="compress-image.html">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2.2"/><path d="m3 17 5-4.5 4 3.5 3.5-3 5.5 5"/></svg></span>
+            <h3 data-bn="ছবির সাইজ কমান" data-en="Compress Image">ছবির সাইজ কমান</h3>
+            <p data-bn="কোয়ালিটি স্লাইডার বা লক্ষ্য KB দিয়ে ফাইল ছোট করুন।" data-en="Shrink file size with a quality slider or a target KB.">কোয়ালিটি স্লাইডার বা লক্ষ্য KB দিয়ে ফাইল ছোট করুন।</p>
+            <span class="go" data-bn="টুল খুলুন →" data-en="Open tool →">টুল খুলুন →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <h2 data-bn="সাধারণ জিজ্ঞাসা (FAQ)" data-en="Frequently asked questions">সাধারণ জিজ্ঞাসা (FAQ)</h2>
+          </div>
+          <div class="faq">
+            <details>
+              <summary data-bn="ছবি থেকে GPS লোকেশন কীভাবে মুছব?" data-en="How do I remove GPS location from a photo?">ছবি থেকে GPS লোকেশন কীভাবে মুছব?</summary>
+              <p data-bn="ছবিটি আবার সেভ করলেই EXIF ব্লক সরে যায়। আমাদের মেটাডেটা টুলটি এটি এক ক্লিকে করে দেয়।" data-en="Simply saving the image again drops the EXIF block. Our metadata tool does it for you in one click.">ছবিটি আবার সেভ করলেই EXIF ব্লক সরে যায়। আমাদের মেটাডেটা টুলটি এটি এক ক্লিকে করে দেয়।</p>
+            </details>
+            <details>
+              <summary data-bn="মেটাডেটা মুছলে কি ছবির মান কমে?" data-en="Does removing metadata reduce quality?">মেটাডেটা মুছলে কি ছবির মান কমে?</summary>
+              <p data-bn="পিক্সেল অপরিবর্তিত থাকে। শুধু তথ্যবলী বাদ যায়। JPG নির্বাচন করলে সামান্য পুনরায়-কম্প্রেস হতে পারে, PNG দিলে তা হয় না।" data-en="The pixels are untouched — only the information block goes. JPG output is very slightly recompressed; PNG avoids that entirely.">পিক্সেল অপরিবর্তিত থাকে। শুধু তথ্যবলী বাদ যায়। JPG নির্বাচন করলে সামান্য পুনরায়-কম্প্রেস হতে পারে, PNG দিলে তা হয় না।</p>
+            </details>
+            <details>
+              <summary data-bn="সব ছবিতেই কি GPS তথ্য থাকে?" data-en="Do all photos contain GPS data?">সব ছবিতেই কি GPS তথ্য থাকে?</summary>
+              <p data-bn="স্মার্টফোনের ক্যামেরা দিয়ে তোলা ছবিতে প্রায় সবসময় থাকে। স্ক্রিনশট বা অন্য অ্যাপের ছবিতে নাও থাকতে পারে।" data-en="Photos taken with a smartphone camera almost always do. Screenshots or images from other apps may not.">স্মার্টফোনের ক্যামেরা দিয়ে তোলা ছবিতে প্রায় সবসময় থাকে। স্ক্রিনশট বা অন্য অ্যাপের ছবিতে নাও থাকতে পারে।</p>
+            </details>
+            <details>
+              <summary data-bn="ছবি কি কোথাও আপলোড হয়?" data-en="Is the photo uploaded to a server?">ছবি কি কোথাও আপলোড হয়?</summary>
+              <p data-bn="কখনোই না — ফাইল পড়া থেকে মুছে ফেলা, সবই আপনার ব্রাউজারে ঘটে।" data-en="Never — reading and stripping the file happens entirely inside your browser.">কখনোই না — ফাইল পড়া থেকে মুছে ফেলা, সবই আপনার ব্রাউজারে ঘটে।</p>
+            </details>
+            <details>
+              <summary data-bn="মুছে ফেলার পর কি আবার লোকেশন চাই?" data-en="Do I lose location data I might want later?">মুছে ফেলার পর কি আবার লোকেশন চাই?</summary>
+              <p data-bn="একবার মুছলে সেই ফাইলে আর থাকে না, তাই প্রয়োজন হলে মূল ছবিটি আগে নিরাপদে রেখে দিন।" data-en="Once stripped it is gone from that file, so keep the untouched original somewhere safe first.">একবার মুছলে সেই ফাইলে আর থাকে না, তাই প্রয়োজন হলে মূল ছবিটি আগে নিরাপদে রেখে দিন।</p>
+            </details>
+            <details>
+              <summary data-bn="শুধু GPS ছাড়া বাকি তথ্য কি থাকে?" data-en="Can I remove GPS but keep the other EXIF data?">শুধু GPS ছাড়া বাকি তথ্য কি থাকে?</summary>
+              <p data-bn="এই টুলটি সব EXIF তথ্য একসাঙ্গে মুছে দেয়, যা শেয়ার করার আগে সবচেয়ে নিরাপদ।" data-en="This tool strips the whole EXIF block at once, which is the safest option before sharing.">এই টুলটি সব EXIF তথ্য একসাঙ্গে মুছে দেয়, যা শেয়ার করার আগে সবচেয়ে নিরাপদ।</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 data-bn="আরও গাইড" data-en="More guides">আরও গাইড</h2>
+        </div>
+        <div class="tool-grid">
+          <a class="tool-card" href="whatsapp-photo-size.html">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5a8.4 8.4 0 0 1-.9-3.7 8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.5 8.4z"/></svg></span>
+            <h3 data-bn="হোয়াটসঅ্যাপে ছবি পাঠানোর সঠিক সাইজ" data-en="WhatsApp Photo Size: How to Send Any Photo">হোয়াটসঅ্যাপে ছবি পাঠানোর সঠিক সাইজ</h3>
+            <p data-bn="হোয়াটসঅ্যাপ প্রতি ছবিতে ১৬ মেগাবাইট সীমা রাখে। এই ছবিটি কীভাবে ছোট করবেন — না দেখেই বুঝে নিন।" data-en="WhatsApp caps each photo at 16 MB. Here is exactly how to get any image under that limit without it looking bad.">হোয়াটসঅ্যাপ প্রতি ছবিতে ১৬ মেগাবাইট সীমা রাখে। এই ছবিটি কীভাবে ছোট করবেন — না দেখেই বুঝে নিন।</p>
+            <span class="go" data-bn="পড়ুন →" data-en="Read →">পড়ুন →</span>
+          </a>
+          <a class="tool-card" href="passport-photo-size-guide.html">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2.2"/><path d="m4 18 5-4 3 2.5"/></svg></span>
+            <h3 data-bn="পাসপোর্ট সাইজ ছবি: সঠিক মাপ ও নিয়ম" data-en="Passport Photo Size: The Complete Guide">পাসপোর্ট সাইজ ছবি: সঠিক মাপ ও নিয়ম</h3>
+            <p data-bn="বাংলাদেশ ও আন্তর্জাতিক ভিসার ছবির সঠিক মাপ, ডিপিআই, মুখের অবস্থান ও ব্যাকগ্রাউন্ড — এক পাতায় সব।" data-en="Exact dimensions for Bangladesh and international applications, plus DPI, head position and the background rules that cause most rejections.">বাংলাদেশ ও আন্তর্জাতিক ভিসার ছবির সঠিক মাপ, ডিপিআই, মুখের অবস্থান ও ব্যাকগ্রাউন্ড — এক পাতায় সব।</p>
+            <span class="go" data-bn="পড়ুন →" data-en="Read →">পড়ুন →</span>
+          </a>
+          <a class="tool-card" href="webp-vs-jpg-vs-png.html">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+            <h3 data-bn="WebP, JPG ও PNG: কোনটি কখন?" data-en="WebP vs JPG vs PNG: When to Use Which">WebP, JPG ও PNG: কোনটি কখন?</h3>
+            <p data-bn="তিনটি ফরম্যাটের পার্থক্য, সুবিধা-অসুবিধা এবং আপনার প্রয়োজন অনুযায়ী সঠিক ছবিটি বাছাইয়ের সহজ নির্দেশনা।" data-en="How the three formats differ, what each is good and bad at, and a simple rule for picking the right one.">তিনটি ফরম্যাটের পার্থক্য, সুবিধা-অসুবিধা এবং আপনার প্রয়োজন অনুযায়ী সঠিক ছবিটি বাছাইয়ের সহজ নির্দেশনা।</p>
+            <span class="go" data-bn="পড়ুন →" data-en="Read →">পড়ুন →</span>
+          </a>
+        </div>
+        <p style="margin-top:16px"><a href="blog.html" data-bn="সব গাইড দেখুন →" data-en="See all guides →">সব গাইড দেখুন →</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 data-bn="ছবির সহায়ক" data-en="Photo Sahayak">ছবির সহায়ক</h4>
+          <p data-bn="বাংলা ও ইংরেজি ভাষাভারীদের জন্য ফ্রি অনলাইন ফটো টুলস। সব প্রসেসিং আপনার ব্রাউজারেই হয় — ছবি কখনো আপলোড হয় না।" data-en="Free online photo tools for Bengali and English speakers. All processing happens in your browser — photos are never uploaded.">বাংলা ও ইংরেজি ভাষাভারীদের জন্য ফ্রি অনলাইন ফটো টুলস। সব প্রসেসিং আপনার ব্রাউজারেই হয় — ছবি কখনো আপলোড হয় না।</p>
+          <p style="margin-top:10px"><a href="tools.html" data-bn="সব টুল দেখুন →" data-en="See all tools →">সব টুল দেখুন →</a></p>
+        </div>
+        <div>
+          <h4 data-bn="টুলসমূহ" data-en="Tools">টুলসমূহ</h4>
+          <ul>
+            <li><a href="watermark-image.html" data-bn="ওয়াটারমার্ক" data-en="Watermark">ওয়াটারমার্ক</a></li>
+            <li><a href="add-border.html" data-bn="বর্ডার যোগ" data-en="Add border">বর্ডার যোগ</a></li>
+            <li><a href="meme-generator.html" data-bn="মিম জেনারেটর" data-en="Meme maker">মিম জেনারেটর</a></li>
+            <li><a href="circle-crop.html" data-bn="গোল ছবি (অ্যাভাটার)" data-en="Circle crop">গোল ছবি (অ্যাভাটার)</a></li>
+            <li><a href="image-to-pdf.html" data-bn="ছবি থেকে PDF" data-en="Image to PDF">ছবি থেকে PDF</a></li>
+            <li><a href="batch-image.html" data-bn="ব্যাচ প্রসেসিং" data-en="Batch tools">ব্যাচ প্রসেসিং</a></li>
+            <li><a href="rotate-flip.html" data-bn="ঘোরান ও ফ্লিপ" data-en="Rotate & flip">ঘোরান ও ফ্লিপ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-bn="আরও টুল" data-en="More tools">আরও টুল</h4>
+          <ul>
+            <li><a href="adjust-image.html" data-bn="ফিল্টার ও অ্যাডজাস্ট" data-en="Filters & adjust">ফিল্টার ও অ্যাডজাস্ট</a></li>
+            <li><a href="compare-image.html" data-bn="তুলনা স্লাইডার" data-en="Compare slider">তুলনা স্লাইডার</a></li>
+            <li><a href="strip-metadata.html" data-bn="মেটাডেটা মুছুন" data-en="Strip metadata">মেটাডেটা মুছুন</a></li>
+            <li><a href="favicon-generator.html" data-bn="ফেভিকন জেনারেটর" data-en="Favicon maker">ফেভিকন জেনারেটর</a></li>
+            <li><a href="ico-converter.html" data-bn="ICO কনভার্টার" data-en="ICO converter">ICO কনভার্টার</a></li>
+            <li><a href="base64-encoder.html" data-bn="Base64 কোড" data-en="Base64">Base64 কোড</a></li>
+            <li><a href="color-picker.html" data-bn="রং পিকার" data-en="Color picker">রং পিকার</a></li>
+            <li><a href="index.html#faq" data-bn="সাধারণ জিজ্ঞাসা" data-en="FAQ">সাধারণ জিজ্ঞাসা</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> <span data-bn="ছবির সহায়ক" data-en="Photo Sahayak">ছবির সহায়ক</span> | <span data-bn="সর্বস্বত্ব সংরক্ষিত" data-en="All rights reserved">সর্বস্বত্ব সংরক্ষিত</span></span>
+        <span data-bn="ভালোবাসা দিয়ে তৈরি — বাংলাদেশের জন্য 🇧🇩" data-en="Made with love — for everyone 🌍">ভালোবাসা দিয়ে তৈরি — বাংলাদেশের জন্য 🇧🇩</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/common.js"></script>
+</body>
+</html>

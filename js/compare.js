@@ -45,7 +45,7 @@
         exportFiltered();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -123,9 +123,7 @@
     PT.canvasToBlob(out, "image/jpeg", 0.92).then(function (blob) {
       outputBlob = blob;
       outputName = PT.baseName(PT.state.file.name) + "-edited.jpg";
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Drag the slider to compare both versions."
-        : "স্লাইডার টেনে দুই সংস্করণ তুলনা করুন।";
+      statusEl.textContent = PT.pick("Drag the slider to compare both versions.", "স্লাইডার টেনে দুই সংস্করণ তুলনা করুন।");
     }).catch(function () { /* ignore */ });
   }
 

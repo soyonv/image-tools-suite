@@ -35,7 +35,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -78,9 +78,7 @@
           (outputFormat === "image/png" ? "png" : outputFormat === "image/webp" ? "webp" : "jpg");
         sizeAfter.textContent = PT.formatBytes(blob.size);
         dimAfter.textContent = canvas.width + " × " + canvas.height + " px · metadata removed";
-        statusEl.textContent = PT.getLang() === "en"
-          ? "Clean copy ready — EXIF, GPS and camera info are gone."
-          : "পরিষ্কার ছবি প্রস্তুত — EXIF, GPS ও ক্যামেরা তথ্য মুছে ফেলা হয়েছে।";
+        statusEl.textContent = PT.pick("Clean copy ready — EXIF, GPS and camera info are gone.", "পরিষ্কার ছবি প্রস্তুত — EXIF, GPS ও ক্যামেরা তথ্য মুছে ফেলা হয়েছে।");
       })
       .catch(function () { /* ignore */ });
   }

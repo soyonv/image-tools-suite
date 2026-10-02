@@ -55,11 +55,9 @@
       setupDisplay();
       draw();
       scheduleOutput(0);
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Drag on the photo to select the area to crop."
-        : "ছবির উপর ড্র্যাগ করে কাটার এলাকা বাছুন।";
+      statusEl.textContent = PT.pick("Drag on the photo to select the area to crop.", "ছবির উপর ড্র্যাগ করে কাটার এলাকা বাছুন।");
     }).catch(function () {
-      alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+      alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
     });
   });
 
@@ -232,7 +230,7 @@
     setupDisplay();
     draw();
     scheduleOutput(0);
-    statusEl.textContent = PT.getLang() === "en" ? "Transform applied." : "পরিবর্তন প্রয়োগ হয়েছে।";
+    statusEl.textContent = PT.pick("Transform applied.", "পরিবর্তন প্রয়োগ হয়েছে।");
   }
 
   rotateBtn.addEventListener("click", function () { transformCanvas("rot"); });
@@ -282,13 +280,11 @@
             (outputFormat === "image/png" ? "png" : "jpg");
           sizeAfter.textContent = PT.formatBytes(blob.size);
           dimAfter.textContent = sw + " × " + sh + " px";
-          statusEl.textContent = PT.getLang() === "en"
-            ? "Crop ready — " + sw + " × " + sh + " px."
-            : "ক্রপ প্রস্তুত — " + sw + " × " + sh + " px।";
+          statusEl.textContent = PT.pick("Crop ready — " + sw + " × " + sh + " px.", "ক্রপ প্রস্তুত — " + sw + " × " + sh + " px।");
         })
         .catch(function () {
           if (seq !== renderSeq) return;
-          statusEl.textContent = PT.getLang() === "en" ? "Export failed." : "এক্সপোর্ট ব্যর্থ।";
+          statusEl.textContent = PT.pick("Export failed.", "এক্সপোর্ট ব্যর্থ।");
         });
   }
 

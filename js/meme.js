@@ -42,7 +42,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -131,9 +131,7 @@
           (outputFormat === "image/png" ? "png" : outputFormat === "image/webp" ? "webp" : "jpg");
         sizeAfter.textContent = PT.formatBytes(blob.size);
         dimAfter.textContent = canvas.width + " × " + canvas.height + " px";
-        statusEl.textContent = PT.getLang() === "en"
-          ? "Type your caption — the meme updates instantly."
-          : "লেখা লিখুন — মিম সঙ্গে সঙ্গে আপডেট হবে।";
+        statusEl.textContent = PT.pick("Type your caption — the meme updates instantly.", "লেখা লিখুন — মিম সঙ্গে সঙ্গে আপডেট হবে।");
       })
       .catch(function () { /* ignore */ });
   }

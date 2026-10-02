@@ -57,11 +57,9 @@
 
       clearPresetActive();
       scheduleRender();
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Photo loaded — adjust the size below."
-        : "ছবি লোড হয়েছে — নিচে সাইজ ঠিক করুন।";
+      statusEl.textContent = PT.pick("Photo loaded — adjust the size below.", "ছবি লোড হয়েছে — নিচে সাইজ ঠিক করুন।");
     }).catch(function () {
-      alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+      alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
     });
   });
 
@@ -180,13 +178,11 @@
 
       var delta = PT.state.file.size - blob.size;
       var pct = PT.state.file.size ? Math.round((delta / PT.state.file.size) * 100) : 0;
-      statusEl.textContent = (PT.getLang() === "en"
-        ? "Ready. "
-        : "প্রস্তুত। ") + (delta > 0
-          ? (PT.getLang() === "en" ? "File is " + pct + "% smaller." : "ফাইল " + pct + "% ছোট হয়েছে।")
-          : (PT.getLang() === "en" ? "New dimensions applied." : "নতুন মাপ প্রয়োগ হয়েছে।"));
+      statusEl.textContent = PT.pick("Ready. ", "প্রস্তুত। ") + (delta > 0
+          ? PT.pick("File is " + pct + "% smaller.", "ফাইল " + pct + "% ছোট হয়েছে।")
+          : PT.pick("New dimensions applied.", "নতুন মাপ প্রয়োগ হয়েছে।"));
     }).catch(function () {
-      statusEl.textContent = PT.getLang() === "en" ? "Export failed — try another format." : "এক্সপোর্ট ব্যর্থ — অন্য ফরম্যাট চেষ্টা করুন।";
+      statusEl.textContent = PT.pick("Export failed — try another format.", "এক্সপোর্ট ব্যর্থ — অন্য ফরম্যাট চেষ্টা করুন।");
     });
   }
 

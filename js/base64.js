@@ -31,12 +31,10 @@
       var ratio = Math.round((uri.length / file.size) * 100);
       sizeHint.textContent = PT.formatBytes(file.size) + " → " + PT.formatBytes(uri.length) +
         " (" + ratio + "% of the original size)";
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Data URI ready — copy the code you need."
-        : "ডেটা URI প্রস্তুত — প্রয়োজনমতো কোড কপি করুন।";
+      statusEl.textContent = PT.pick("Data URI ready — copy the code you need.", "ডেটা URI প্রস্তুত — প্রয়োজনমতো কোড কপি করুন।");
     };
     reader.onerror = function () {
-      alert(PT.getLang() === "en" ? "Could not read this file." : "ফাইলটি পড়া যায়নি।");
+      alert(PT.pick("Could not read this file.", "ফাইলটি পড়া যায়নি।"));
     };
     reader.readAsDataURL(file);
   });
@@ -45,12 +43,10 @@
     if (!text) return;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
-        statusEl.textContent = PT.getLang() === "en" ? msgEn : msgBn;
+        statusEl.textContent = PT.pick(msgEn, msgBn);
       }).catch(function () { /* ignore */ });
     } else {
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Copy manually — select the text and press Ctrl+C."
-        : "ম্যানুয়ালি কপি করুন — টেক্সট সিলেক্ট করে Ctrl+C চাপুন।";
+      statusEl.textContent = PT.pick("Copy manually — select the text and press Ctrl+C.", "ম্যানুয়ালি কপি করুন — টেক্সট সিলেক্ট করে Ctrl+C চাপুন।");
     }
   }
 

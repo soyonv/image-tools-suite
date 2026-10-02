@@ -42,7 +42,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -114,12 +114,10 @@
         outputName = PT.baseName(PT.state.file.name) + "-rotated." + ext(outputFormat);
         sizeAfter.textContent = PT.formatBytes(blob.size);
         dimAfter.textContent = work.width + " × " + work.height + " px";
-        statusEl.textContent = PT.getLang() === "en"
-          ? "Ready — download when you are happy with the result."
-          : "প্রস্তুত — পছন্দ হলে ডাউনলোড করুন।";
+        statusEl.textContent = PT.pick("Ready — download when you are happy with the result.", "প্রস্তুত — পছন্দ হলে ডাউনলোড করুন।");
       })
       .catch(function () {
-        statusEl.textContent = PT.getLang() === "en" ? "Export failed." : "এক্সপোর্ট ব্যর্থ।";
+        statusEl.textContent = PT.pick("Export failed.", "এক্সপোর্ট ব্যর্থ।");
       });
   }
 

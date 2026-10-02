@@ -1,0 +1,52 @@
+# Photo Sahayak (ছবির সহায়ক)
+
+> Free, bilingual (Bangla + English) online photo tools that run entirely in
+> the user's browser using HTML5 Canvas. Photos are never uploaded to a server.
+> No account, no watermark, no paid tier. 19 tools
+> and 9 written guides. Site UI auto-detects the visitor's
+> language and supports Bangla, English, Hindi, Urdu, Arabic, Spanish, French,
+> Indonesian, Portuguese, Russian, Turkish and Chinese.
+
+Home: https://photosahayak.netlify.app/
+All tools: https://photosahayak.netlify.app/tools.html
+Guides: https://photosahayak.netlify.app/blog.html
+
+## Tools
+- [Add Watermark to Image](https://photosahayak.netlify.app/watermark-image.html): Add a text or logo watermark to your photos: position, opacity and size are all adjustable. Free and fully browser-based — no upload.
+- [Add Border to Image](https://photosahayak.netlify.app/add-border.html): Add a coloured border, padding and rounded corners to any photo in seconds. Free browser-based tool — nothing is uploaded.
+- [Meme Generator](https://photosahayak.netlify.app/meme-generator.html): Create memes online: add top and bottom captions with adjustable font size, colour and outline. Free browser meme maker — no upload, no watermark.
+- [Circle Crop — Round Avatar Maker](https://photosahayak.netlify.app/circle-crop.html): Crop a photo into a circle or rounded square for avatars, profile pictures and logos, with transparent PNG output. Free browser tool — no upload.
+- [Image to PDF Converter](https://photosahayak.netlify.app/image-to-pdf.html): Combine multiple images into a single PDF with A4, Letter or image-fit page sizes and custom margins. Free browser tool — images never leave your device.
+- [Bulk Image Processing](https://photosahayak.netlify.app/batch-image.html): Bulk resize, compress or convert dozens of images in one run and download the results as a single ZIP. Free browser-based batch tool — nothing is uploaded.
+- [Rotate & Flip Image Online](https://photosahayak.netlify.app/rotate-flip.html): Free online rotate and flip tool: turn a photo 90, 180 or 270 degrees and mirror it horizontally or vertically. Runs in your browser — no upload.
+- [Edit Image — Filters & Adjustments](https://photosahayak.netlify.app/adjust-image.html): Free online image editor: adjust brightness, contrast, saturation, blur, grayscale, sepia and invert with a live preview. Everything runs in your browser — no upload.
+- [Before & After Image Comparison](https://photosahayak.netlify.app/compare-image.html): Compare before and after versions of your photo with a drag slider. Adjust brightness, contrast and blur to preview edits — free and fully browser-based.
+- [Remove EXIF & Photo Metadata](https://photosahayak.netlify.app/strip-metadata.html): Strip EXIF, GPS location, camera model and timestamps from your photos before sharing. Free online metadata remover — nothing is uploaded.
+- [Favicon Generator](https://photosahayak.netlify.app/favicon-generator.html): Generate a complete favicon set from one image: 16, 32, 48, 64, 180, 192 and 512 px PNGs plus a downloadable multi-size .ico file. Free and browser-based.
+- [Convert Image to ICO](https://photosahayak.netlify.app/ico-converter.html): Convert any PNG or JPG into a multi-size .ico file (16–256 px) in one click. Free browser-based ICO converter — nothing is uploaded.
+- [Image to Base64 Data URI](https://photosahayak.netlify.app/base64-encoder.html): Convert any image into a Base64 data URI, copy the string, and embed it directly in HTML or CSS. Free browser-based tool — nothing is uploaded.
+- [Image Color Picker & Palette](https://photosahayak.netlify.app/color-picker.html): Pick colours from any photo, copy HEX codes, and view the dominant palette — useful for design and print. Free, no upload.
+- [Resize Image](https://photosahayak.netlify.app/resize-image.html): Change photo size by pixels or percentage.
+- [Compress Image](https://photosahayak.netlify.app/compress-image.html): Shrink file size with a quality slider or a target KB.
+- [Convert Format](https://photosahayak.netlify.app/png-to-jpg.html): Convert PNG ↔ JPG ↔ WebP in one click.
+- [Crop Image](https://photosahayak.netlify.app/crop-image.html): Crop, rotate and flip your photo.
+- [Passport Size Photo](https://photosahayak.netlify.app/passport-photo.html): 35×45 mm presets at print-ready 300 DPI.
+
+## Guides
+- [WhatsApp Photo Size: How to Send Any Photo](https://photosahayak.netlify.app/whatsapp-photo-size.html): WhatsApp will not send your photo? A step-by-step guide to getting any image under WhatsApp's 16 MB limit, with the exact quality and size settings that keep it looking sharp.
+- [Passport Photo Size: The Complete Guide](https://photosahayak.netlify.app/passport-photo-size-guide.html): Everything about passport photo sizes: exact millimetre dimensions for Bangladesh and international applications, 300 DPI printing, correct head position, background colour and common rejection reasons.
+- [WebP vs JPG vs PNG: When to Use Which](https://photosahayak.netlify.app/webp-vs-jpg-vs-png.html): A plain-English comparison of JPG, PNG and WebP: how each compresses, which supports transparency, which browsers accept them, and which format to pick for photos, logos, screenshots and the web.
+- [Remove Photo Location Before You Post](https://photosahayak.netlify.app/remove-photo-location-before-posting.html): Every phone photo silently records where and when it was taken. Learn what EXIF data exposes, when it genuinely matters, and how to remove all of it in one click before sharing.
+- [How to Compress an Image for an Online Form](https://photosahayak.netlify.app/how-to-compress-image-for-online-form.html): Online forms rejecting your photo over file size? Learn how to compress an image to an exact 20KB, 50KB, 100KB or 200KB target for government forms, exam portals and job applications — with the pixel sizes that actually work.
+- [How to Change a Photo Background Colour](https://photosahayak.netlify.app/remove-photo-background-online.html): Need a plain white or coloured background for a passport photo, a product listing or a form upload? Change the colour behind your subject in your browser — no resize, no install, no upload.
+- [How to Edit Photos on Your Phone Without an App](https://photosahayak.netlify.app/photo-look-better-in-photo-editor.html): Edit photos straight from your Android gallery in the browser — brightness, contrast, saturation, blur, sepia and black-and-white — without installing a single app or giving up your photos to an uploader.
+- [Instagram Photo Size: The Exact Pixel Dimensions](https://photosahayak.netlify.app/instagram-photo-size.html): Instagram cropping your photo? Here are the exact pixel sizes for a feed post (1080×1350), a story (1080×1920), a reel cover and a profile picture, and how to resize without losing quality.
+- [What JPG Quality Numbers Actually Mean](https://photosahayak.netlify.app/jpeg-vs-png-quality.html): What does JPG quality 80 really mean? Learn how the quality number maps to visible quality, where the eye stops noticing, and how to pick the lowest setting that still looks perfect — which is how you cut file size in half.
+
+## Key facts
+- All processing is client-side; no image is ever uploaded.
+- Every tool is free with no sign-up and no watermark on output.
+- Bengali and English content is authored in the HTML; other languages are
+  translated at runtime.
+- Passport photos are generated at 300 DPI (35x45 mm = 413x531 px).
+- WhatsApp caps photos at 16 MB; the compress tool targets a specific KB.

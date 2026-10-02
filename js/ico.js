@@ -31,7 +31,7 @@
         build();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -54,10 +54,10 @@
     if (!PT.state.image) return;
     var sizes = selectedSizes();
     if (!sizes.length) {
-      statusEl.textContent = PT.getLang() === "en" ? "Pick at least one size." : "অন্তত একটি সাইজ বাছুন।";
+      statusEl.textContent = PT.pick("Pick at least one size.", "অন্তত একটি সাইজ বাছুন।");
       return;
     }
-    statusEl.textContent = PT.getLang() === "en" ? "Building ICO…" : "ICO ফাইল তৈরি হচ্ছে…";
+    statusEl.textContent = PT.pick("Building ICO…", "ICO ফাইল তৈরি হচ্ছে…");
 
     var chain = Promise.resolve();
     var entries = [];
@@ -73,11 +73,9 @@
       icoBlob = window.IcoWriter.buildIco(entries);
       sizeAfter.textContent = PT.formatBytes(icoBlob.size);
       dimAfter.textContent = sizes.join(", ") + " px";
-      statusEl.textContent = PT.getLang() === "en"
-        ? "ICO ready with " + sizes.length + " size(s)."
-        : sizes.length + "টি সাইজসহ ICO প্রস্তুত।";
+      statusEl.textContent = PT.pick("ICO ready with " + sizes.length + " size(s).", sizes.length + "টি সাইজসহ ICO প্রস্তুত।");
     }).catch(function () {
-      statusEl.textContent = PT.getLang() === "en" ? "Could not build the ICO file." : "ICO ফাইল তৈরি করা যায়নি।";
+      statusEl.textContent = PT.pick("Could not build the ICO file.", "ICO ফাইল তৈরি করা যায়নি।");
     });
   }
 

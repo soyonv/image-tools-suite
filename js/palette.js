@@ -32,7 +32,7 @@
         extractPalette();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -56,9 +56,7 @@
     try {
       data = tctx.getImageData(0, 0, w, h).data;
     } catch (e) {
-      statusEl.textContent = PT.getLang() === "en"
-        ? "This image cannot be sampled in the browser."
-        : "ছবিটি ব্রাউজারে স্যাম্পল করা যায়নি।";
+      statusEl.textContent = PT.pick("This image cannot be sampled in the browser.", "ছবিটি ব্রাউজারে স্যাম্পল করা যায়নি।");
       return;
     }
 
@@ -98,9 +96,7 @@
       chip.addEventListener("click", function () { setPicked(c.hex); });
       paletteRow.appendChild(chip);
     });
-    statusEl.textContent = PT.getLang() === "en"
-      ? palette.length + " dominant colours found."
-      : palette.length + "টি প্রধান রং পাওয়া গেছে।";
+    statusEl.textContent = PT.pick(palette.length + " dominant colours found.", palette.length + "টি প্রধান রং পাওয়া গেছে।");
   }
 
   function contrast(hexColor) {
@@ -128,7 +124,7 @@
     if (!text) return;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
-        statusEl.textContent = PT.getLang() === "en" ? msgEn : msgBn;
+        statusEl.textContent = PT.pick(msgEn, msgBn);
       }).catch(function () { /* ignore */ });
     }
   }

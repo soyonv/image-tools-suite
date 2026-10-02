@@ -39,9 +39,7 @@
       chip.textContent = f.name + " · " + PT.formatBytes(f.size);
       fileList.appendChild(chip);
     });
-    statusEl.textContent = PT.getLang() === "en"
-      ? files.length + " file(s) selected — choose an action and run."
-      : files.length + "টি ফাইল বাছাই হয়েছে — কাজ বাছে চালান।";
+    statusEl.textContent = PT.pick(files.length + " file(s) selected — choose an action and run.", files.length + "টি ফাইল বাছাই হয়েছে — কাজ বাছে চালান।");
   }
 
   opRow.addEventListener("click", function (e) {
@@ -138,9 +136,7 @@
     files.forEach(function (f) { totalBefore += f.size; });
     if (results.length) {
       var saved = totalBefore ? Math.round(((totalBefore - totalAfter) / totalBefore) * 100) : 0;
-      statusEl.textContent = PT.getLang() === "en"
-        ? results.length + " done · " + saved + "% smaller in total · download any file or the ZIP."
-        : results.length + "টি সম্পন্ন · মোট " + saved + "% ছোট হয়েছে · আলাদা ফাইল বা ZIP নিন।";
+      statusEl.textContent = PT.pick(results.length + " done · " + saved + "% smaller in total · download any file or the ZIP.", results.length + "টি সম্পন্ন · মোট " + saved + "% ছোট হয়েছে · আলাদা ফাইল বা ZIP নিন।");
     }
   }
 
@@ -152,7 +148,7 @@
 
     files.forEach(function (file, i) {
       chain = chain.then(function () {
-        statusEl.textContent = (PT.getLang() === "en" ? "Processing " : "প্রসেস হচ্ছে ") + (i + 1) + " / " + files.length + "…";
+        statusEl.textContent = PT.pick("Processing ", "প্রসেস হচ্ছে ") + (i + 1) + " / " + files.length + "…";
         return process(file).then(function (r) { results.push(r); });
       });
     });
@@ -160,9 +156,7 @@
     chain.then(function () {
       renderResults();
     }).catch(function () {
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Some files could not be processed."
-        : "কিছু ফাইল প্রসেস করা যায়নি।";
+      statusEl.textContent = PT.pick("Some files could not be processed.", "কিছু ফাইল প্রসেস করা যায়নি।");
     }).finally(function () {
       runBtn.disabled = false;
     });
@@ -170,9 +164,7 @@
 
   zipBtn.addEventListener("click", function () {
     if (!results.length) {
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Run the processing first."
-        : "আগে প্রসেসিং চালান।";
+      statusEl.textContent = PT.pick("Run the processing first.", "আগে প্রসেসিং চালান।");
       return;
     }
     var blob = window.MiniZip.createZip(results);

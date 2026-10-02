@@ -22,7 +22,7 @@ const compareBoxes = (aBn, aEn, bBn, bEn) => `          <div class="compare">
             </div>
           </div>`;
 
-const actionBar = (labelBn, labelEn) => `          <div class="action-bar">
+const actionBar = (labelBn, labelEn = "Download") => `          <div class="action-bar">
             <button type="button" class="btn btn-primary" id="downloadBtn" data-bn="${labelBn}" data-en="${labelEn}">${labelBn}</button>
             <button type="button" class="btn btn-ghost" id="resetBtn" data-bn="আরেকটি ছবি বাছুন" data-en="Choose another photo">আরেকটি ছবি বাছুন</button>
           </div>`;
@@ -117,8 +117,11 @@ ${actionBar("ডাউনলোড করুন")}
     faq: [
       { qbn: "ওয়াটারমার্ক কি ছবির কোয়ালিটি নষ্ট করে?", qen: "Does a watermark reduce photo quality?", abn: "না, ওয়াটারমার্ক আলাদা স্তরে আঁকা হয়। ডাউনলোডের সময় আপনি নিজে JPG কোয়ালিটি বেছে নিতে পারেন।", aen: "No — the watermark is drawn as a separate layer, and you choose the JPG quality on export.", },
       { qbn: "লোগো দেওয়ার জন্য কোন ফরম্যাট ভালো?", qen: "Which format is best for a logo?", abn: "PNG সবচেয়ে ভালো, কারণ স্বচ্ছ ব্যাকগ্রাউন্ড থাকে এবং ছবির সঙ্গে মিশে যায়।", aen: "PNG — it keeps transparency, so the logo blends into the photo.", },
-      { qbn: "পুরো ছবিতে ছড়ানো ওয়াটারমার্ক কি সম্ভব?", qen: "Can I tile a watermark across the image?", abn: "হ্যাঁ — অবস্থান ড্রপডাউন থেকে \"পুরো ছবিতে ছড়ানো\" বেছে নিলে বারবার প্যাটার্ন হিসেবে বসবে।", aen: "Yes — pick \"Tiled across\" in the position dropdown to repeat the watermark in a pattern.", },
-      { qbn: "ছবি কি সার্ভারে আপলোড হয়?", qen: "Is the photo uploaded to a server?", abn: "না। পুরো ওয়াটারমার্কিং প্রক্রিয়া আপনার ব্রাউজারের Canvas-এ ঘটে।", aen: "No. The whole watermark process happens on your browser's Canvas.", }
+      { qbn: "পুরো ছবিতে ছড়ানো ওয়াটারমার্ক কি সম্ভব?", qen: "Can I tile a watermark across the image?", abn: "হ্যাঁ — অবস্থান ড্রপডাউন থেকে “পুরো ছবিতে ছড়ানো” বেছে নিলে বারবার প্যাটার্ন হিসেবে বসবে।", aen: "Yes — pick “Tiled across” in the position dropdown to repeat the watermark in a pattern.", },
+      { qbn: "ছবি কি সার্ভারে আপলোড হয়?", qen: "Is the photo uploaded to a server?", abn: "না। পুরো ওয়াটারমার্কিং প্রক্রিয়া আপনার ব্রাউজারের Canvas-এ ঘটে।", aen: "No. The whole watermark process happens on your browser's Canvas.", },
+      { qbn: "ওয়াটারমার্ক বসানোর পর ফাইলের সাইজ কতটা বাড়ে?", qen: "How much does the watermark add to the file size?", abn: "সাধারণত খুব সামান্য — ১–৩%। ছবির বেশিরভাগ পিক্সেল অপরিবর্তিত থাকে, তাই ফাইল প্রায় একই আকারে থাকে।", aen: "Very little — around 1–3%. Almost every pixel is unchanged, so the file stays roughly the same size.", },
+      { qbn: "মোবাইলে ওয়াটারমার্ক ব্যবহার করা যাবে?", qen: "Can I add a watermark on mobile?", abn: "হ্যাঁ। টুলটি মোবাইল-ফার্স্ট — ফোনের গ্যালারি থেকে ছবি বেছে টেক্সট বা লোগো বসিয়ে ডাউনলোড করা যায়।", aen: "Yes. The tool is mobile-first — pick a photo from your gallery, stamp it, and download.", },
+      { qbn: "একই ছবিতে একাধিক ওয়াটারমার্ক বসানো যাবে?", qen: "Can I place more than one watermark?", abn: "হ্যাঁ। অবস্থান ড্রপডাউন থেকে “পুরো ছবিতে ছড়ানো” বেছে নিলে ওয়াটারমার্ক প্যাটার্ন হিসেবে বারবার আঁকা হয়, যা দুর্জন্য সাধারণত মুছে ফেলা কঠিন করে।", aen: "Yes — the “Tiled across” option repeats the watermark as a pattern, which is much harder for others to crop out.", }
     ]
   },
 
@@ -166,9 +169,12 @@ ${actionBar("ডাউনলোড করুন")}
     ],
     faq: [
       { qbn: "পাসপোর্ট ছবির জন্য বর্ডার কি অনুমোদিত?", qen: "Are borders allowed on passport photos?", abn: "বেশিরভাগ দেশে ছবির চারপাশে সাদা বর্ডার দেওয়া হয়, তবে ফ্রেম কতটা পড়বে তা অফিসিয়াল নিয়ম দেখে নেওয়া ভালো। পাসপোর্ট টুলে সাদা ব্যাকগ্রাউন্ড অপশন আছে।", aen: "Most countries allow a plain white border, but check the official rules for how wide it may be. The passport tool includes a white background option.", },
-      { qbn: "গোল কোনের বর্ডার কি বানানো যায়?", qen: "Can I get rounded corners?", abn: "হ্যাঁ — \"গোল কোণ\" স্লাইডারটি সরাসরি কনোর রেডিয়াস নিয়ন্ত্রণ করে।", aen: "Yes — the \"Corner radius\" slider controls the radius directly.", },
+      { qbn: "গোল কোনের বর্ডার কি বানানো যায়?", qen: "Can I get rounded corners?", abn: "হ্যাঁ — “গোল কোণ” স্লাইডারটি সরাসরি কনোর রেডিয়াস নিয়ন্ত্রণ করে।", aen: "Yes — the “Corner radius” slider controls the radius directly.", },
       { qbn: "বর্ডার যোগ করলে ছবির কোয়ালিটি বদলায়?", qen: "Does adding a border change quality?", abn: "ছবির পিক্সেল অপরিবর্তিত থাকে — শুধু চারপাশে নতুন ক্যানভাসের জায়গা যোগ হয়।", aen: "The photo pixels stay untouched — only extra canvas is added around them.", },
-      { qbn: "কি ট্রান্সপারেন্ট বর্ডার বা ছবি বানানো যায়?", qen: "Can I keep transparency?", abn: "PNG আউটপুটে ছবির বাইরের অংশ স্বচ্ছ থাকে।", aen: "With PNG output the area outside the photo stays transparent.", }
+      { qbn: "কি ট্রান্সপারেন্ট বর্ডার বা ছবি বানানো যায়?", qen: "Can I keep transparency?", abn: "PNG আউটপুটে ছবির বাইরের অংশ স্বচ্ছ থাকে।", aen: "With PNG output the area outside the photo stays transparent.", },
+      { qbn: "কতটা প্যাডিং দিলে ছবি সবচেয়ে ভালো দেখায়?", qen: "How much padding looks best?", abn: "ছবির প্রস্থের ৪–৮% প্যাডিং সাধারণত সবচেয়ে স্বাভাবিক দেখায়। কোনো কঠিন নিয়ম নেই — স্লাইডার দিয়ে বারবার দেখে ঠিক করুন।", aen: "Around 4–8% of the image width usually looks most natural. There is no hard rule — adjust the slider until it looks right.", },
+      { qbn: "JPG আউটপুটে বর্ডারের বাইরের অংশে কী থাকে?", qen: "What fills the area around the border in JPG output?", abn: "JPG স্বচ্ছতা রাখতে পারে না, তাই বর্ডারের বাইরের অংশে আপনি বেছে নেওয়া “ছবির পেছনের রং” বসবে।", aen: "JPG cannot store transparency, so the area around the border is filled with the background colour you pick.", },
+      { qbn: "ছবির আসল অনুপাত কি অক্ষত থাকে?", qen: "Is the photo itself left untouched?", abn: "হ্যাঁ। বর্ডার যোগ করলে ছবির কোনো পিক্সেল বদলায় না — ক্যানভাসের আকার বড় হয়ে চারপাশে ফাঁকা জায়গা যোগ হয়।", aen: "Yes. No pixel of the photo changes — the canvas simply grows and empty space is added around it." },
     ]
   },
 
@@ -229,7 +235,10 @@ ${actionBar("ডাউনলোড করুন")}
       { qbn: "এই মিম জেনারেটর কি ফ্রি?", qen: "Is this meme generator free?", abn: "হ্যাঁ, সম্পূর্ণ ফ্রি — কোনো ওয়াটারমার্ক বা সাইন-আপ ছাড়াই।", aen: "Yes, completely free — no watermark and no sign-up.", },
       { qbn: "মিম কি অন্যরা ব্যবহার করতে পারবে?", qen: "Can I use memes I make here elsewhere?", abn: "হ্যাঁ, ডাউনলোড করা ছবি আপনার নিজের, কোনো অতিরিক্ত লাইসেন্স শর্ত নেই।", aen: "Yes — the image you download is yours, with no extra licence restrictions.", },
       { qbn: "বাংলা টেক্সট লিখতে পারব?", qen: "Can I write in Bengali?", abn: "হ্যাঁ, বাংলা ও ইংরেজি — দুই ভাষাতেই লেখা যায়। বাংলার জন্য Noto Sans Bengali ব্যবহার করা হয়।", aen: "Yes — both Bengali and English work; Bengali uses the Noto Sans Bengali font.", },
-      { qbn: "ছবিটি কি আপলোড হয়?", qen: "Is the photo uploaded?", abn: "না, টেক্সট আঁকা ও ফাইল তৈরি সবই ব্রাউজারেই হয়।", aen: "No — the caption is drawn and the file is created entirely in your browser.", }
+      { qbn: "ছবিটি কি আপলোড হয়?", qen: "Is the photo uploaded?", abn: "না, টেক্সট আঁকা ও ফাইল তৈরি সবই ব্রাউজারেই হয়।", aen: "No — the caption is drawn and the file is created entirely in your browser.", },
+      { qbn: "মিমে বাংলা লেখা যাবে?", qen: "Can I write Bengali on a meme?", abn: "হ্যাঁ — বাংলা ও ইংরেজি দুই ভাষাতেই লেখা যায়। বাংলার জন্য Noto Sans Bengali ফন্ট ব্যবহার করা হয়, তাই যুক্তাক্ষর ঠিকভাবে দেখায়।", aen: "Yes — Bengali works alongside English. Bengali text uses the Noto Sans Bengali font, so joined letters render correctly.", },
+      { qbn: "লেখা ছবির বাইরে চলে গেলে কী করব?", qen: "What if the caption is too long to fit?", abn: "“ফিট টু ইমেজ” বাটনটি লেখার আকার ছবির প্রস্থের সঙ্গে মেলাবে, তাই লম্বা লেখাও ফ্রেমের ভেতরেই থাকবে।", aen: "The “Fit to image” button scales the caption to the photo width, so even a long line stays inside the frame." },
+
     ]
   },
 
@@ -274,7 +283,7 @@ ${slider("posY", "উপরে-নিচে", "Vertical", -100, 100, 0)}
           <div class="field">
             <label for="shapeColor" data-bn="ব্যাকগ্রাউন্ড রং" data-en="Background colour">ব্যাকগ্রাউন্ড রং</label>
             <input type="color" id="shapeColor" value="#ffffff" style="height:44px;padding:4px">
-            <div class="hint" data-bn="PNG আউটপুটে \"#ffffff\" হলে স্বচ্ছ হয় না — স্বচ্ছ রাখতে ফাইলটি PNG নিন।" data-en="For a transparent result export as PNG (the colour fills only the shape area).">PNG আউটপুটে "#ffffff" হলে স্বচ্ছ হয় না — স্বচ্ছ রাখতে ফাইলটি PNG নিন।</div>
+            <div class="hint" data-bn="PNG আউটপুটে “#ffffff” হলে স্বচ্ছ হয় না — স্বচ্ছ রাখতে ফাইলটি PNG নিন।" data-en="For a transparent result export as PNG (the colour fills only the shape area).">PNG আউটপুটে "#ffffff" হলে স্বচ্ছ হয় না — স্বচ্ছ রাখতে ফাইলটি PNG নিন।</div>
           </div>
 ${compareBoxes("আগের সাইজ", "Original size", "নতুন সাইজ", "New size")}
           <div class="status-line" id="status"></div>
@@ -290,7 +299,10 @@ ${actionBar("ডাউনলোড করুন (PNG)")}
       { qbn: "আউটপুট ছবির পেছনে স্বচ্ছ থাকবে?", qen: "Is the output transparent outside the circle?", abn: "হ্যাঁ — PNG আউটপুটে গোলের বাইরের অংশ স্বচ্ছ থাকে, যা প্রোফাইল ফটোর জন্য দরকার।", aen: "Yes — with PNG output everything outside the circle is transparent, which is what profile pictures need.", },
       { qbn: "ছবি ছোট হলে জুম কি লাগবে?", qen: "What if my photo is small?", abn: "জুম স্লাইডারে ২০০% পর্যন্ত বাড়িয়ে ফ্রেম পূরণ করতে পারেন, তবে অতিরিক্ত জুম ছবিকে ঝাপসা করে।", aen: "Raise zoom up to 200% to fill the frame, though very high zoom can soften the photo.", },
       { qbn: "গোল ছবি কি ফেসবুক প্রোফাইলে কাজ করবে?", qen: "Will a round photo work as a Facebook profile picture?", abn: "হ্যাঁ, ফেসবুক প্রোফাইল ছবি বৃত্তাকার হওয়ায় গোল ফ্রেম খুবই মানানসই।", aen: "Yes — Facebook crops profile pictures to a circle, so a round image fits perfectly.", },
-      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the photo uploaded?", abn: "না, কাটাকাঁচা সম্পূর্ণ আপনার ব্রাউজারে হয়।", aen: "No — all cropping happens in your browser.", }
+      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the photo uploaded?", abn: "না, কাটাকাঁচা সম্পূর্ণ আপনার ব্রাউজারে হয়।", aen: "No — all cropping happens in your browser.", },
+      { qbn: "ছবিটি বর্গাকার না হলে কী হবে?", qen: "What if my photo is not square?", abn: "কোনো সমস্যা নেই। টুলটি ছবির কেন্দ্র ধরে ফ্রেমের সবচেয়ে ছোট দিক মেনে কাটে, তাই ছবির কোনো অংশ নষ্ট হয় না।", aen: "No problem. The tool crops from the centre along the shortest side, so none of your photo is stretched or squashed.", },
+      { qbn: "কত পিক্সেলের ছবি দিলে ভালো ফল পাব?", qen: "What resolution should I upload?", abn: "ফ্রেমের দ্বিগুণ চওড়ার ছবি দিলে সবচেয়ে পরিষ্কার ফল পাবেন। ১০০০ পিক্সেল চওড়া ছবি সাধারণত যথেষ্ট।", aen: "Use an image twice as wide as the frame for the sharpest result. A 1000-pixel-wide photo is usually plenty." },
+
     ]
   }
 ];

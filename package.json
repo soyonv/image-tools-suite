@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "build": "node -e \"console.log('static site: no build step')\""
+    "generate": "node scripts/generate.mjs && node scripts/make-og.mjs && node scripts/sync-domain.mjs && node scripts/linkgraph.mjs",
+    "build": "node scripts/generate.mjs && node scripts/make-og.mjs && node scripts/sync-domain.mjs && node scripts/linkgraph.mjs && node scripts/stage.mjs"
   },
   "engines": {
     "node": ">=18"

@@ -63,7 +63,9 @@ ${dropzone(B64_PATH, "ছবি এখানে ড্র্যাগ করু�
       { qbn: "Base64 কি ছবির সাইজ কমায়?", qen: "Does Base64 make the image smaller?", abn: "না, উল্টে — ডেটা URI সাধারণত আসল ফাইলের ৩৩% বেশি জায়গা নেয়। তাই বড় ছবির জন্য ফাইল পাথাই ভালো।", aen: "No — a data URI is usually about 33% larger than the file itself, so keep file paths for big images.", },
       { qbn: "কখন Base64 ব্যবহার করব?", qen: "When should I use Base64?", abn: "ছোট আইকন, ইমেইল টেমপ্লেট বা CSS-এ ছোট ছবি বসানোর সময় — ফাইল আলাদা রাখতে হয় না।", aen: "For small icons, email templates, or embedding tiny images in CSS without extra file requests.", },
       { qbn: "ছবি কি আপলোড হয়?", qen: "Is the image uploaded?", abn: "কখনোই না — পুরু ফাইল পড়া আপনার ব্রাউজারেই হয়।", aen: "Never — the file is read entirely inside your browser.", },
-      { qbn: "বড় ছবির জন্য কী করব?", qen: "What about large images?", abn: "ছবির সাইজ কমাতে রিসাইজ বা কম্প্রেস টুল ব্যবহার করুন, তারপর Base64 করুন।", aen: "Resize or compress the image first, then convert it to Base64.", }
+      { qbn: "বড় ছবির জন্য কী করব?", qen: "What about large images?", abn: "ছবির সাইজ কমাতে রিসাইজ বা কম্প্রেস টুল ব্যবহার করুন, তারপর Base64 করুন।", aen: "Resize or compress the image first, then convert it to Base64.", },
+      { qbn: "Base64 কোডে কি লাইন ব্রেক থাকে?", qen: "Does the Base64 string contain line breaks?", abn: "না, কোডটি এক লাইনেই থাকে যাতে সরাসরি CSS বা HTML-এ বসানো যায়।", aen: "No — it stays on a single line so you can paste it straight into CSS or HTML.", },
+      { qbn: "Base64 থেকে আবার ছবি বানানো যাবে?", qen: "Can I turn Base64 back into an image?", abn: "হ্যাঁ — data URI ব্রাউজারের ঠিকানা বারে সরাসরি ছবি হিসেবে খোলে। যেকোনো Base64 ডিকোডারেও উল্টো করা যায়।", aen: "Yes — a data URI opens directly as an image in your browser, and any Base64 decoder can reverse it.", }
     ]
   },
 
@@ -118,7 +120,9 @@ ${dropzone(PAL_PATH, "ছবি এখানে ড্র্যাগ করু�
       { qbn: "ছবির রং কীভাবে বের হয়?", qen: "How are the colours detected?", abn: "ছবিটি ছোট করে প্রতিটি পিক্সেলের RGB মান পড়া হয় এবং ক্লোজেস্ট রঙগুলো গোনা হয় — তাই প্রধান রঙগুলো একসাথে পাওয়া যায়।", aen: "The image is downscaled and every pixel's RGB value is counted, then the most frequent colours become the palette.", },
       { qbn: "কোন কোন ধরনের ছবিতে ভালো কাজ করে?", qen: "Which images work best?", abn: "প্রাকৃতিক ছবি ও পণ্যের ছবি ভালো ফল দেয়; আঁকা ও গ্রাডিয়েন্ট ছবিতে রং মিশে যেতে পারে।", aen: "Natural photos and product shots work best; gradients or line art may blend into fewer colours.", },
       { qbn: "HEX কোড কোথায় ব্যবহার হয়?", qen: "Where are HEX codes used?", abn: "ওয়েব ডিজাইন (CSS), গ্রাফিক ডিজাইন, প্রিন্টের জন্য রঙ নির্বাচন এবং ক্যানভাস-ভিত্তিক অ্যাপে।", aen: "Web design (CSS), graphic design, print colour matching and any canvas-based app.", },
-      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the image uploaded?", abn: "না, সব পিক্সেল পড়া আপনার ব্রাউজারেই হয়।", aen: "No — pixels are read locally in your browser.", }
+      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the image uploaded?", abn: "না, সব পিক্সেল পড়া আপনার ব্রাউজারেই হয়।", aen: "No — pixels are read locally in your browser.", },
+      { qbn: "কতগুলো রং একসাঙ্গে দেখা যায়?", qen: "How many colours are in the palette?", abn: "প্রধান রংগুলোর একটি প্যালেট দেখানো হয়, যা আপনি এক ক্লিকেই সব HEX কোড হিসেবে কপি করতে পারেন।", aen: "A dominant-colour palette is shown, and you can copy every HEX code at once with one click.", },
+      { qbn: "RGB বা HSL মানও পাওয়া যায়?", qen: "Can I get RGB or HSL values too?", abn: "রঙটি HEX-এর পাশাপাশি RGB ও HSL হিসেবেও দেখানো হয় — যা CSS-এ সরাসরি বসানো যায়।", aen: "Yes — each colour also shows RGB and HSL, which you can paste straight into CSS.", }
     ]
   }
 ];

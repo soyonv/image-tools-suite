@@ -101,7 +101,9 @@ ${actionBar("ডাউনলোড করুন")}
       { qbn: "ছবি ঘোরানোর সবচেয়ে ভালো উপায় কী?", qen: "What is the best way to rotate a photo?", abn: "এই টুলেই ৯০°, ১৮০° বা ২৭০° ঘোরান — ফাইলের মধ্যেই orientation ঠিক হয়ে যায়, তাই ফোনের গ্যালারিতেও ঠিকমতো দেখাবে।", aen: "Rotate 90°, 180° or 270° right here — the pixels are physically rotated, so the photo also displays correctly in your phone gallery.", },
       { qbn: "ফ্লিপ আর ঘোরানের পার্থক্য কী?", qen: "What is the difference between flip and rotate?", abn: "ঘোরান মানে ছবি একটা নির্দিষ্ট কোণে ঘুরে যায়; ফ্লিপ মানে দর্পণের মতো উল্টে যাওয়া (অনুভূমিক বা উল্লম্ব)।", aen: "Rotating turns the image by an angle; flipping mirrors it like a reflection, horizontally or vertically.", },
       { qbn: "ঘোরানোর পর কি ছবির কোয়ালিটি কমবে?", qen: "Does rotating reduce quality?", abn: "না। ঘোরান ও ফ্লিপ শুধু পিক্সেল সাজিয়ে নেয় — কোনো পুনরায় কম্প্রেস বা কোয়ালিটি হারায় না।", aen: "No. Rotating and flipping only rearrange pixels — nothing is recompressed, so quality is untouched.", },
-      { qbn: "একাধিক ছবি একসাথে ঘোরানো যাবে?", qen: "Can I rotate several photos at once?", abn: "একবারে একটি ছবি কাজ হয়, তবে ব্যাচ টুল দিয়ে একসাথে অনেক ছবি রিসাইজ বা কনভার্ট করা যায়।", aen: "One photo at a time here — for many files at once, use the batch tool to resize or convert in bulk.", }
+      { qbn: "একাধিক ছবি একসাথে ঘোরানো যাবে?", qen: "Can I rotate several photos at once?", abn: "একবারে একটি ছবি কাজ হয়, তবে ব্যাচ টুল দিয়ে একসাথে অনেক ছবি রিসাইজ বা কনভার্ট করা যায়।", aen: "One photo at a time here — for many files at once, use the batch tool to resize or convert in bulk.", },
+      { qbn: "৯০ ডিগ্রি ছাড়া অন্য কোণে ঘোরানো যাবে?", qen: "Can I rotate by an angle other than 90 degrees?", abn: "এই টুলে ৯০°, ১৮০° ও ২৭০° দেওয়া আছে, যা বাস্তবে প্রায় সবসময় যথেষ্ট। খুব অস্বাভাবিক কোণ দরকার হলে এডিটর ব্যবহার করুন।", aen: "This tool offers 90°, 180° and 270°, which covers almost every real case. For unusual angles, use a full editor.", },
+      { qbn: "ঘোরানোর পর ফাইলের নাম কি বদলায়?", qen: "Does rotating rename the file?", abn: "হ্যাঁ, আপনার মূল নামের শেষে `-rotated` যুক্ত হয়, তাই আগের ছবির সঙ্গে নতুন ছবি গুলিয়ে যায় না।", aen: "Yes — `-rotated` is added to your original filename so it never overwrites the source image.", },
     ]
   },
 
@@ -161,7 +163,10 @@ ${actionBar("ডাউনলোড করুন")}
       { qbn: "এই ফিল্টার কি আমার ছবির কোয়ালিটি নষ্ট করে?", qen: "Do these filters ruin photo quality?", abn: "না। ফিল্টারগুলো ব্রাউজারের Canvas-এ পিক্সেল-লেভেলে কাজ করে। ডাউনলোডের সময় মাত্র আপনার বেছে নেওনা JPG/WebP কোয়ালিটি প্রয়োগ হয়।", aen: "No. Filters run pixel-by-pixel on the browser Canvas, and only the JPG/WebP quality you choose is applied on export.", },
       { qbn: "ব্লার কি একদম ফ্রি ও অফলাইন?", qen: "Is blur free and offline?", abn: "হ্যাঁ, পুরো প্রসেসিং আপনার ডিভাইসেই হয়, তাই ইন্টারনেট ছাড়াও কাজ করে এবং কোনো কিছু আপলোড হয় না।", aen: "Yes — everything happens on your device, so it works offline and nothing is ever uploaded.", },
       { qbn: "একাধিক ছবিতে একই ফিল্টার লাগবে?", qen: "Can I apply the same filter to many photos?", abn: "বর্তমানে একটি ছবিতে কাজ হয়। ব্যাচ টুল দিয়ে একসাথে অনেক ছবি রিসাইজ/কনভার্ট করা যায়।", aen: "One photo at a time for now. Use the batch tool to resize or convert many files at once.", },
-      { qbn: "ফিল্টার করার পর ছবি আপলোড হয় কি?", qen: "Is my photo uploaded after editing?", abn: "কখনোই না। ফিল্টার ও ডাউনলোড দুটোই আপনার ব্রাউজারে সম্পন্ন হয়।", aen: "Never. Both editing and downloading happen entirely in your browser.", }
+      { qbn: "ফিল্টার করার পর ছবি আপলোড হয় কি?", qen: "Is my photo uploaded after editing?", abn: "কখনোই না। ফিল্টার ও ডাউনলোড দুটোই আপনার ব্রাউজারে সম্পন্ন হয়।", aen: "Never. Both editing and downloading happen entirely in your browser.", },
+      { qbn: "আসল ছবিতে ফিরে যাওয়া যাবে?", qen: "Can I undo back to the original photo?", abn: "হ্যাঁ — “রিসেট” বোতামে চাপ দিলে সব স্লাইডার শূন্যে ফিরে গিয়ে আসল ছবি দেখায়।", aen: "Yes — press Reset to return every slider to zero and show the untouched original.", },
+      { qbn: "ফিল্টার করা ছবি কি ছাপলে ভালো দেখায়?", qen: "Will a filtered photo still print well?", abn: "হ্যাঁ, ফিল্টার কেবল প্রদর্শনের জন্য; ফাইলটি সাধারণ JPG/PNG হিসেবে সেভ হয়, তাই ছাপলেও ফল ঠিক থাকে।", aen: "Yes. Filters only change how the preview looks; the file saves as a normal JPG/PNG, so prints stay true.", },
+
     ]
   },
 
@@ -211,7 +216,10 @@ ${actionBar("ফিল্টার করা ছবি ডাউনলোড ক
       { qbn: "এই টুল কীভাবে কাজ করে?", qen: "How does this tool work?", abn: "ছবিটি দুই ভাগে দেখানো হয় — বাঁ পাশে আসল ছবি, ডান পাশে ফিল্টার করা সংস্করণ। মাঝের স্লাইডার টেনে বদলে দেখুন।", aen: "The photo is shown in two halves: the original on the left and the filtered version on the right. Drag the middle slider to reveal each side.", },
       { qbn: "তুলনার ছবিটি কি আপলোড হয়?", qen: "Is the photo uploaded for comparison?", abn: "না, সব কিছুই Canvas-এ রেন্ডার হয় — কোনো সার্ভারে কিছু যায় না।", aen: "No. Everything is rendered on the Canvas — nothing reaches a server.", },
       { qbn: "এখানে কি ক্রপ বা রিসাইজও করা যায়?", qen: "Can I crop or resize here too?", abn: "এই টুলটি মূলত ফিল্টার তুলনার জন্য। ক্রপ ও রিসাইজের জন্য আলাদা টুলগুলো ব্যবহার করুন।", aen: "This tool focuses on filter comparison. Use the dedicated crop and resize tools for those jobs.", },
-      { qbn: "মোবাইলে স্লাইডার কি ঠিকভাবে চলে?", qen: "Does the slider work on mobile?", abn: "হ্যাঁ, আঙুল দিয়েও স্লাইডার টানা যায় এবং স্লাইডার ইনপুটও কাজ করে।", aen: "Yes — you can drag with your finger, and the range input works as well.", }
+      { qbn: "মোবাইলে স্লাইডার কি ঠিকভাবে চলে?", qen: "Does the slider work on mobile?", abn: "হ্যাঁ, আঙুল দিয়েও স্লাইডার টানা যায় এবং স্লাইডার ইনপুটও কাজ করে।", aen: "Yes — you can drag with your finger, and the range input works as well.", },
+      { qbn: "তুলনার জন্য দুটি ছবি কীভাবে দেব?", qen: "How do I load two different photos?", abn: "আগের ছবি হিসেবে একটি, পরের ছবি হিসেবে আরেকটি ড্রপ করুন। ফাইল বেছে নেওয়ার পর “পরিবর্তন” বোতামও আছে।", aen: "Drop one image as the before photo and another as the after photo. There is also a button to swap them.", },
+      { qbn: "এই টুল কি নিজে থেকে কোনো ফিল্টার দেয়?", qen: "Does this tool apply any filter?", abn: "না — এটি শুধু দুটি ছবির পার্থক্য দেখায়, ছবিতে কোনো পরিবর্তন করে না। ফিল্টার করতে অ্যাডজাস্ট ইমেজ টুল ব্যবহার করুন।", aen: "No — it only shows the difference between two photos and changes nothing. Use the Adjust Image tool to apply filters.", },
+
     ]
   }
 ];

@@ -50,11 +50,9 @@
 
       baseCanvas = null;
       scheduleRender(0);
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Photo loaded — set the quality below."
-        : "ছবি লোড হয়েছে — নিচে কোয়ালিটি ঠিক করুন।";
+      statusEl.textContent = PT.pick("Photo loaded — set the quality below.", "ছবি লোড হয়েছে — নিচে কোয়ালিটি ঠিক করুন।");
     }).catch(function () {
-      alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+      alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
     });
   });
 
@@ -145,15 +143,13 @@
     var targetMode = targetCheck.checked;
     var targetKB = Math.max(10, parseInt(targetInput.value, 10) || 200);
 
-    statusEl.textContent = PT.getLang() === "en" ? "Working…" : "কাজ হচ্ছে…";
+    statusEl.textContent = PT.pick("Working…", "কাজ হচ্ছে…");
 
     var pending;
     if (targetMode && isLossy) {
       pending = searchTargetSize(canvas, mime, targetKB * 1024);
     } else if (targetMode && !isLossy) {
-      statusEl.textContent = PT.getLang() === "en"
-        ? "PNG cannot be size-targeted — choose JPG or WebP for target size."
-        : "PNG-এ টার্গেট সাইজ কাজ করে না — JPG বা WebP বাছুন।";
+      statusEl.textContent = PT.pick("PNG cannot be size-targeted — choose JPG or WebP for target size.", "PNG-এ টার্গেট সাইজ কাজ করে না — JPG বা WebP বাছুন।");
       pending = PT.canvasToBlob(canvas, mime);
     } else {
       pending = PT.canvasToBlob(canvas, mime, isLossy ? q : undefined);
@@ -168,23 +164,19 @@
       var saved = PT.state.file.size - blob.size;
       var pct = PT.state.file.size ? Math.round((saved / PT.state.file.size) * 100) : 0;
       deltaEl.textContent = saved > 0
-        ? (PT.getLang() === "en" ? "Saved " + pct + "% (" + PT.formatBytes(saved) + ")" : PT.formatBytes(saved) + " কমেছে (" + pct + "%)")
-        : (PT.getLang() === "en" ? "No size reduction at this setting" : "এই সেটিংসে সাইজ কমেনি");
+        ? PT.pick("Saved " + pct + "% (" + PT.formatBytes(saved) + ")", PT.formatBytes(saved) + " কমেছে (" + pct + "%)")
+        : PT.pick("No size reduction at this setting", "এই সেটিংসে সাইজ কমেনি");
 
       if (targetMode && isLossy) {
-        statusEl.textContent = (PT.getLang() === "en"
-          ? "Target " + targetKB + " KB → got "
-          : "লক্ষ্য " + targetKB + " KB → পাওয়া গেছে ") + PT.formatBytes(blob.size) + ".";
+        statusEl.textContent = PT.pick("Target " + targetKB + " KB → got ", "লক্ষ্য " + targetKB + " KB → পাওয়া গেছে ") + PT.formatBytes(blob.size) + ".";
       } else if (!isLossy) {
-        statusEl.textContent = PT.getLang() === "en"
-          ? "PNG is lossless — use JPG/WebP for smaller files."
-          : "PNG লসলেস — ছোট ফাইলের জন্য JPG/WebP ব্যবহার করুন।";
+        statusEl.textContent = PT.pick("PNG is lossless — use JPG/WebP for smaller files.", "PNG লসলেস — ছোট ফাইলের জন্য JPG/WebP ব্যবহার করুন।");
       } else {
-        statusEl.textContent = (PT.getLang() === "en" ? "Ready at " : "প্রস্তুত ") + Math.round(q * 100) + "% quality.";
+        statusEl.textContent = PT.pick("Ready at ", "প্রস্তুত ") + Math.round(q * 100) + "% quality.";
       }
     }).catch(function () {
       if (seq !== renderSeq) return;
-      statusEl.textContent = PT.getLang() === "en" ? "Export failed — try another format." : "এক্সপোর্ট ব্যর্থ — অন্য ফরম্যাট চেষ্টা করুন।";
+      statusEl.textContent = PT.pick("Export failed — try another format.", "এক্সপোর্ট ব্যর্থ — অন্য ফরম্যাট চেষ্টা করুন।");
     });
   }
 

@@ -33,9 +33,7 @@
       chip.textContent = f.name + " · " + PT.formatBytes(f.size);
       fileList.appendChild(chip);
     });
-    statusEl.textContent = PT.getLang() === "en"
-      ? files.length + " image(s) ready — set the page options and download."
-      : files.length + "টি ছবি প্রস্তুত — পেজ সেট করে ডাউনলোড করুন।";
+    statusEl.textContent = PT.pick(files.length + " image(s) ready — set the page options and download.", files.length + "টি ছবি প্রস্তুত — পেজ সেট করে ডাউনলোড করুন।");
   }
 
   pageSizeRow.addEventListener("click", function (e) {
@@ -169,7 +167,7 @@
 
   downloadBtn.addEventListener("click", function () {
     if (!files.length) return;
-    statusEl.textContent = PT.getLang() === "en" ? "Building PDF…" : "PDF তৈরি হচ্ছে…";
+    statusEl.textContent = PT.pick("Building PDF…", "PDF তৈরি হচ্ছে…");
     downloadBtn.disabled = true;
 
     var dims = pageDims();
@@ -205,13 +203,9 @@
       var pdf = buildPdf(images, dims.w, dims.h, marginPt);
       var blob = new Blob([pdf], { type: "application/pdf" });
       PT.downloadBlob(blob, PT.baseName(files[0].name) + ".pdf");
-      statusEl.textContent = PT.getLang() === "en"
-        ? "PDF downloaded — " + images.length + " page(s)."
-        : "PDF ডাউনলোড হয়েছে — " + images.length + " পৃষ্ঠা।";
+      statusEl.textContent = PT.pick("PDF downloaded — " + images.length + " page(s).", "PDF ডাউনলোড হয়েছে — " + images.length + " পৃষ্ঠা।");
     }).catch(function () {
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Could not build the PDF. Try fewer or smaller images."
-        : "PDF তৈরি করা যায়নি। কম বা ছোট ছবি দিয়ে চেষ্টা করুন।";
+      statusEl.textContent = PT.pick("Could not build the PDF. Try fewer or smaller images.", "PDF তৈরি করা যায়নি। কম বা ছোট ছবি দিয়ে চেষ্টা করুন।");
     }).finally(function () {
       downloadBtn.disabled = false;
     });

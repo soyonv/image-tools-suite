@@ -28,7 +28,7 @@
         build();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -93,10 +93,10 @@
     var sizes = selectedSizes();
     if (!sizes.length) {
       previewGrid.innerHTML = "";
-      statusEl.textContent = PT.getLang() === "en" ? "Pick at least one size." : "অন্তত একটি সাইজ বাছুন।";
+      statusEl.textContent = PT.pick("Pick at least one size.", "অন্তত একটি সাইজ বাছুন।");
       return;
     }
-    statusEl.textContent = PT.getLang() === "en" ? "Rendering icons…" : "আইকন তৈরি হচ্ছে…";
+    statusEl.textContent = PT.pick("Rendering icons…", "আইকন তৈরি হচ্ছে…");
 
     var chain = Promise.resolve();
     sizes.forEach(function (size) {
@@ -115,9 +115,7 @@
     chain.then(function () {
       renderPreviews();
       snippet.value = snippetHtml(sizes);
-      statusEl.textContent = PT.getLang() === "en"
-        ? sizes.length + " icon(s) ready — download the PNGs or one ICO file."
-        : sizes.length + "টি আইকন প্রস্তুত — PNG বা একসাথে .ico নিন।";
+      statusEl.textContent = PT.pick(sizes.length + " icon(s) ready — download the PNGs or one ICO file.", sizes.length + "টি আইকন প্রস্তুত — PNG বা একসাথে .ico নিন।");
     });
   }
 
@@ -141,11 +139,9 @@
     try {
       var blob = window.IcoWriter.buildIco(entries);
       PT.downloadBlob(blob, "favicon.ico");
-      statusEl.textContent = PT.getLang() === "en"
-        ? "favicon.ico downloaded — drop it in your site root."
-        : "favicon.ico ডাউনলোড হয়েছে — সাইটের রুটে রাখুন।";
+      statusEl.textContent = PT.pick("favicon.ico downloaded — drop it in your site root.", "favicon.ico ডাউনলোড হয়েছে — সাইটের রুটে রাখুন।");
     } catch (e) {
-      statusEl.textContent = PT.getLang() === "en" ? "Could not build the ICO file." : "ICO ফাইল তৈরি করা যায়নি।";
+      statusEl.textContent = PT.pick("Could not build the ICO file.", "ICO ফাইল তৈরি করা যায়নি।");
     }
   });
 
@@ -153,7 +149,7 @@
     if (!snippet.value) return;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(snippet.value).then(function () {
-        statusEl.textContent = PT.getLang() === "en" ? "HTML copied to clipboard." : "কোড কপি হয়েছে।";
+        statusEl.textContent = PT.pick("HTML copied to clipboard.", "কোড কপি হয়েছে।");
       }).catch(function () { snippet.select(); });
     } else {
       snippet.select();

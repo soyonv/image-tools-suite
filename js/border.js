@@ -38,7 +38,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -104,9 +104,7 @@
           (outputFormat === "image/png" ? "png" : outputFormat === "image/webp" ? "webp" : "jpg");
         sizeAfter.textContent = PT.formatBytes(blob.size);
         dimAfter.textContent = canvas.width + " × " + canvas.height + " px";
-        statusEl.textContent = PT.getLang() === "en"
-          ? "Border applied — adjust the sliders until it looks right."
-          : "বর্ডার প্রয়োগ হয়েছে — স্লাইডার দিয়ে ঠিক করুন।";
+        statusEl.textContent = PT.pick("Border applied — adjust the sliders until it looks right.", "বর্ডার প্রয়োগ হয়েছে — স্লাইডার দিয়ে ঠিক করুন।");
       })
       .catch(function () { /* ignore */ });
   }

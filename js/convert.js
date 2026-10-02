@@ -51,11 +51,9 @@
       else setFormat("image/jpeg");
 
       render();
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Photo loaded — choose an output format."
-        : "ছবি লোড হয়েছে — আউটপুট ফরম্যাট বাছুন।";
+      statusEl.textContent = PT.pick("Photo loaded — choose an output format.", "ছবি লোড হয়েছে — আউটপুট ফরম্যাট বাছুন।");
     }).catch(function () {
-      alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+      alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
     });
   });
 
@@ -113,19 +111,19 @@
       var diff = blob.size - PT.state.file.size;
       var pct = PT.state.file.size ? Math.round((Math.abs(diff) / PT.state.file.size) * 100) : 0;
       deltaEl.textContent = diff < 0
-        ? (PT.getLang() === "en" ? pct + "% smaller" : pct + "% ছোট")
+        ? PT.pick(pct + "% smaller", pct + "% ছোট")
         : diff > 0
-          ? (PT.getLang() === "en" ? pct + "% larger" : pct + "% বড়")
-          : (PT.getLang() === "en" ? "same size" : "একই সাইজ");
+          ? PT.pick(pct + "% larger", pct + "% বড়")
+          : PT.pick("same size", "একই সাইজ");
 
       resultFrame.hidden = false;
       resultImg.src = canvas.toDataURL(mime === "image/png" ? "image/png" : mime, 0.9);
 
-      statusEl.textContent = (PT.getLang() === "en" ? "Converted to " : "কনভার্ট হয়েছে ") +
+      statusEl.textContent = PT.pick("Converted to ", "কনভার্ট হয়েছে ") +
         extFor(mime).toUpperCase() + ".";
     }).catch(function () {
       if (seq !== renderSeq) return;
-      statusEl.textContent = PT.getLang() === "en" ? "Conversion failed — try another format." : "কনভার্ট ব্যর্থ — অন্য ফরম্যাট চেষ্টা করুন।";
+      statusEl.textContent = PT.pick("Conversion failed — try another format.", "কনভার্ট ব্যর্থ — অন্য ফরম্যাট চেষ্টা করুন।");
     });
   }
 

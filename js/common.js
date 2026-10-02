@@ -5,45 +5,91 @@
 (function () {
   "use strict";
 
-  var LANG_KEY = "ps_lang";
+  /* ---------- Language ----------
+     Resolution order:
+       1. A manual choice the visitor made (persisted) — always wins.
+       2. Their browser language, so a visitor from Spain sees Spanish.
+       3. English, which is always complete.
 
-  /* ---------- Language (Bengali primary, English secondary) ---------- */
+     Bengali and English are authored inline in the HTML as data-bn/data-en.
+     Every other language is translated at runtime from English via
+     I18N.t(), falling back to English when a string has no translation yet. */
+
+  // js/i18n.js is loaded before this file. Capture it once, but keep guarding
+  // every use so the site still works in English if that script ever fails.
+  var I18N = window.I18N;
   function getLang() {
-    // A stored choice always wins; otherwise follow the browser language so a
-    // global audience gets English automatically and Bengali users get Bengali.
+    if (I18N) {
+      var saved = I18N.getStored();
+      if (saved) return saved;
+      return I18N.detect();
+    }
     try {
-      var saved = localStorage.getItem(LANG_KEY);
-      if (saved === "en" || saved === "bn") return saved;
+      var legacy = localStorage.getItem("ps_lang");
+      if (legacy === "en" || legacy === "bn") return legacy;
     } catch (e) { /* ignore */ }
     var nav = (navigator.language || (navigator.languages && navigator.languages[0]) || "en").toLowerCase();
     return nav.indexOf("bn") === 0 ? "bn" : "en";
   }
 
+  /* Resolve one English source string into the active language. */
+  function translate(lang, enText) {
+    if (lang === "en") return enText;
+    if (lang === "bn") return null; // handled by the caller (data-bn)
+    return I18N ? I18N.t(lang, enText) : enText;
+  }
+
   function applyLang(lang) {
-    document.documentElement.lang = lang === "en" ? "en" : "bn";
-    document.querySelectorAll("[data-bn][data-en]").forEach(function (el) {
-      el.textContent = el.getAttribute("data-" + lang);
-    });
-    document.querySelectorAll("[data-bn-ph][data-en-ph]").forEach(function (el) {
-      el.setAttribute("placeholder", el.getAttribute("data-" + lang + "-ph"));
-    });
-    document.querySelectorAll("[data-bn-aria][data-en-aria]").forEach(function (el) {
-      el.setAttribute("aria-label", el.getAttribute("data-" + lang + "-aria"));
-    });
-    var btn = document.getElementById("langToggle");
-    if (btn) {
-      btn.textContent = lang === "bn" ? "EN" : "বাংলা";
-      btn.setAttribute(
-        "aria-label",
-        lang === "bn" ? "Switch to English" : "বাংলায় পরিবর্তন করুন"
-      );
+    var root = document.documentElement;
+
+    // Bengali and English come straight from the authored attributes.
+    if (lang === "bn" || lang === "en") {
+      root.lang = lang;
+      document.querySelectorAll("[data-bn][data-en]").forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+      document.querySelectorAll("[data-bn-ph][data-en-ph]").forEach(function (el) {
+        el.setAttribute("placeholder", el.getAttribute("data-" + lang + "-ph"));
+      });
+      document.querySelectorAll("[data-bn-aria][data-en-aria]").forEach(function (el) {
+        el.setAttribute("aria-label", el.getAttribute("data-" + lang + "-aria"));
+      });
+    } else {
+      // Any other language: translate from the English source string.
+      root.lang = lang;
+      document.querySelectorAll("[data-en]").forEach(function (el) {
+        var out = translate(lang, el.getAttribute("data-en"));
+        if (out) el.textContent = out;
+      });
+      document.querySelectorAll("[data-en-ph]").forEach(function (el) {
+        var out = translate(lang, el.getAttribute("data-en-ph"));
+        if (out) el.setAttribute("placeholder", out);
+      });
+      document.querySelectorAll("[data-en-aria]").forEach(function (el) {
+        var out = translate(lang, el.getAttribute("data-en-aria"));
+        if (out) el.setAttribute("aria-label", out);
+      });
+    }
+
+    // Right-to-left scripts (Arabic, Urdu) mirror the whole layout.
+    var rtl = I18N ? I18N.isRTL(lang) : false;
+    root.setAttribute("dir", rtl ? "rtl" : "ltr");
+    document.body.classList.toggle("rtl", rtl);
+
+    var sel = document.getElementById("langSelect");
+    if (sel) {
+      sel.value = lang;
+      var meta = I18N ? I18N.meta(lang) : { name: lang.toUpperCase() };
+      sel.setAttribute("aria-label", "Language: " + meta.en);
     }
   }
 
-  function setLang(lang) {
-    try {
-      localStorage.setItem(LANG_KEY, lang);
-    } catch (e) { /* ignore */ }
+  function setLang(lang, remember) {
+    if (!I18N || !I18N.isSupported(lang)) return;
+    // Only persist an explicit choice; auto-detection stays unstored so the
+    // site follows the visitor's locale on every new visit.
+    if (remember) I18N.store(lang);
+    else I18N.store(null);
     applyLang(lang);
     document.dispatchEvent(new CustomEvent("langchange", { detail: { lang: lang } }));
   }
@@ -57,6 +103,47 @@
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
+  }
+
+  /* ---------- Language picker ----------
+     The header ships a small #langToggle button on every page. We upgrade
+     it in place into a full <select> listing every supported language in
+     its own script, so one change covers all pages without editing markup. */
+  function initLangPicker() {
+    if (!I18N) return;
+    var btn = document.getElementById("langToggle");
+    var host = btn && btn.parentNode;
+    if (!btn || !host) return;
+    if (document.getElementById("langSelect")) return; // already upgraded
+
+    var sel = document.createElement("select");
+    sel.id = "langSelect";
+    sel.className = "lang-select";
+
+    I18N.LANGS.forEach(function (l) {
+      var opt = document.createElement("option");
+      opt.value = l.code;
+      // Native name, with the English name for anyone who can't read it.
+      opt.textContent = l.name + (l.code === "en" ? "" : " (" + l.en + ")");
+      opt.setAttribute("lang", l.code);
+      sel.appendChild(opt);
+    });
+
+    sel.value = getLang();
+    sel.addEventListener("change", function () {
+      setLang(sel.value, true);
+    });
+
+    host.replaceChild(sel, btn);
+  }
+
+  /* Pick a message for the active language (English source, Bangla fallback). */
+  function pick(en, bn) {
+    var lang = getLang();
+    if (lang === "en") return en;
+    if (lang === "bn") return bn;
+    var out = I18N ? I18N.t(lang, en) : en;
+    return out || en;
   }
 
   /* ---------- Formatting ---------- */
@@ -150,9 +237,10 @@
     function handle(file) {
       if (!isImageFile(file)) {
         alert(
-          getLang() === "en"
-            ? "Please choose an image file (JPG, PNG, WebP, GIF)."
-            : "অনুগ্রহ করে একটি ছবির ফাইল বাছুন (JPG, PNG, WebP, GIF)।"
+          pick(
+            "Please choose an image file (JPG, PNG, WebP, GIF).",
+            "অনুগ্রহ করে একটি ছবির ফাইল বাছুন (JPG, PNG, WebP, GIF)।"
+          )
         );
         return;
       }
@@ -202,9 +290,10 @@
       var files = Array.prototype.slice.call(fileList || []).filter(isImageFile);
       if (!files.length) {
         alert(
-          getLang() === "en"
-            ? "Please choose image files (JPG, PNG, WebP, GIF)."
-            : "অনুগ্রহ করে ছবির ফাইল বাছুন (JPG, PNG, WebP, GIF)।"
+          pick(
+            "Please choose image files (JPG, PNG, WebP, GIF).",
+            "অনুগ্রহ করে ছবির ফাইল বাছুন (JPG, PNG, WebP, GIF)।"
+          )
         );
         return;
       }
@@ -269,15 +358,10 @@
 
   /* ---------- Boot ---------- */
   function boot() {
+    initLangPicker();
     applyLang(getLang());
     initNav();
     markCurrentPage();
-    var btn = document.getElementById("langToggle");
-    if (btn) {
-      btn.addEventListener("click", function () {
-        setLang(getLang() === "bn" ? "en" : "bn");
-      });
-    }
     var year = document.getElementById("year");
     if (year) year.textContent = String(new Date().getFullYear());
   }
@@ -291,6 +375,8 @@
   window.PhotoTools = {
     getLang: getLang,
     setLang: setLang,
+    t: function (en) { return pick(en, en); },
+    pick: pick,
     formatBytes: formatBytes,
     baseName: baseName,
     loadImage: loadImage,

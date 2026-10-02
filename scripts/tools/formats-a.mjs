@@ -86,7 +86,10 @@ ${actionBar("পরিষ্কার ছবি ডাউনলোড করু�
       { qbn: "EXIF ডেটায় কী কী থাকে?", qen: "What does EXIF data contain?", abn: "ফোনের মডেল, টেক্সন শটের সময়, জিপিএস লোকেশন, ক্যামেরা সেটিংস এবং কখনো কখনো মানুষের নাম।", aen: "Phone model, capture date and time, GPS location, camera settings and sometimes names.", },
       { qbn: "GPS লোকেশন সরালে কি ছবির মান কমবে?", qen: "Does removing GPS reduce quality?", abn: "না। শুধু তথ্যবলী ফাইলটি পুনরায় এনকোড হয় — ছবির পিক্সেল অপরিবর্তিত থাকে।", aen: "No. Only the info block is rebuilt — the actual pixels stay the same.", },
       { qbn: "ফোনের Gallery থেকে নেওয়া ছবিতে কি GPS থাকে?", qen: "Do photos from a phone gallery have GPS data?", abn: "প্রায়ই থাকে। এই টুল ব্যবহার করে শেয়ারের আগে অবস্থান তথ্য সরিয়ে নিন।", aen: "Often, yes. Run your photo through this tool before sharing it publicly.", },
-      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the photo uploaded anywhere?", abn: "না, পুরো প্রক্রিয়া আপনার ব্রাউজারেই ঘটে।", aen: "No — the whole process runs in your browser.", }
+      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the photo uploaded anywhere?", abn: "না, পুরো প্রক্রিয়া আপনার ব্রাউজারেই ঘটে।", aen: "No — the whole process runs in your browser.", },
+      { qbn: "মেটাডেটা মুছলে কি ফাইল আরও ছোট হয়?", qen: "Does removing metadata make the file smaller?", abn: "সামান্য — এক্সিফ ব্লক কয়েক কিলোবাইটের হয়। ফাইলের বড় অংশ থাকে আপনার ছবির পিক্সেল ও কম্প্রেস তথ্যে।", aen: "Only slightly — the EXIF block is a few kilobytes. Most of the file is still your image data.", },
+      { qbn: "কোন তথ্য মুছে ফেলা হয় না?", qen: "What is NOT removed?", abn: "ছবির দৃশ্যমান অংশ কখনোই বদলায় না। মুছে যায় শুধু সেই অদৃশ্য তথ্যবলী — EXIF, GPS ও ক্যামেরা তথ্য।", aen: "The visible image is never altered. Only the invisible information block is dropped — EXIF, GPS and camera data.", },
+
     ]
   },
 
@@ -132,6 +135,7 @@ ${dropzone(PNG_PATH, "লোগো বা ছবি দিন", "Drop your logo 
             <button type="button" class="btn btn-primary" id="downloadAllBtn" data-bn="সব PNG একসাথে (.zip নয়, ব্রাউজারে)" data-en="Download all PNGs">সব PNG ডাউনলোড</button>
             <button type="button" class="btn btn-accent" id="downloadIcoBtn" data-bn="একসাথে .ico ফাইল নিন" data-en="Download single .ico">একসাথে .ico ফাইল নিন</button>
             <button type="button" class="btn btn-ghost" id="copyCodeBtn" data-bn="কোড কপি করুন" data-en="Copy code">কোড কপি করুন</button>
+            <button type="button" class="btn btn-ghost" id="resetBtn" data-bn="আরেকটি লোগো বাছুন" data-en="Choose another image">আরেকটি লোগো বাছুন</button>
           </div>
         </div>
       </section>`,
@@ -144,7 +148,10 @@ ${dropzone(PNG_PATH, "লোগো বা ছবি দিন", "Drop your logo 
       { qbn: "ফেভিকন কি কত সাইজের দরকার?", qen: "How many favicon sizes do I need?", abn: "কমপক্ষে 16, 32 ও 180 (Apple) দরকার। 192 ও 512 পিএন্টা অ্যান্ড্রয়েড ও Windows-এ ভালো ফল দেয়।", aen: "At least 16, 32 and 180 (Apple). Sizes 192 and 512 look best on Android and Windows tiles.", },
       { qbn: ".ico ফাইল কি এখনও দরকার?", qen: "Is an ICO file still needed?", abn: "হ্যাঁ, পুরোনো ব্রাউজার ও Windows ট্যাবে favicon.ico খোঁজে। এই টুল সেটিও একসাথে বানিয়ে দেয়।", aen: "Yes — older browsers and Windows tabs look for favicon.ico, and this tool builds that too.", },
       { qbn: "কীভাবে ব্যবহার করব?", qen: "How do I use them?", abn: "ডাউনলোড করা ফাইলগুলো ওয়েবসাইটের রুট ফোল্ডারে রাখুন, তারপর দেওয়া HTML কোডটি &lt;head&gt; এ বসান।", aen: "Put the downloaded files in your website root folder, then paste the generated HTML code inside your <head>.", },
-      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the logo uploaded?", abn: "না, সব আইকন আপনার ব্রাউজারেই তৈরি হয়।", aen: "No — every icon is generated in your browser.", }
+      { qbn: "ছবি কি আপলোড হয়?", qen: "Is the logo uploaded?", abn: "না, সব আইকন আপনার ব্রাউজারেই তৈরি হয়।", aen: "No — every icon is generated in your browser.", },
+      { qbn: "সব সাইজের ফেভিকন কি আবশ্যক?", qen: "Do I need every favicon size?", abn: "না। অন্তত ১৬, ৩২ ও ১৮০ px লাগলেই বেশিরভাগ সাইটের জন্য যথেষ্ট। বাকিগুলো চাইলে টিক দিয়ে নিন।", aen: "No. For most sites 16, 32 and 180 px are enough. Tick the rest only if you want the extra sizes.", },
+      { qbn: "আইকনের ব্যাকগ্রাউন্ড কি বদলানো যায়?", qen: "Can I change the icon background?", abn: "PNG আউটপুটে লোগোর স্বচ্ছ অংশ স্বচ্ছই থাকে, তাই আপনার সাইটের রঙ সাময়িকভাবেও দেখা যায়। নির্দিষ্ট রঙ চাইলে লোগোর পেছনে সেই রং বসিয়ে দিন।", aen: "With PNG output the transparent parts of your logo stay transparent, so your site background shows through. For a solid colour, place it behind the logo first.", },
+
     ]
   },
 
@@ -197,7 +204,10 @@ ${compareBoxes("আগের সাইজ", "Original size", "ICO ফাইল�
       { qbn: "ICO ফাইল কোথায় ব্যবহার হয়?", qen: "Where is an ICO file used?", abn: "ওয়েবসাইটের favicon.ico, Windows ফোল্ডারের আইকন এবং ডেস্কটপ অ্যাপের আইকনে।", aen: "Website favicons (favicon.ico), Windows folder icons and desktop app icons.", },
       { qbn: "এক ফাইলে কি একাধিক সাইজ থাকে?", qen: "Can one file hold several sizes?", abn: "হ্যাঁ — একটি ICO ফাইলে 16 থেকে 256 px পর্যন্ত একাধিক সাইজ একসাথে থাকতে পারে; ব্রাউজার প্রয়োজনমতো বেছে নেয়।", aen: "Yes — a single ICO can embed sizes from 16 to 256 px, and each browser picks what it needs.", },
       { qbn: "PNG বা JPG কোনটা দিব?", qen: "Should I use PNG or JPG source?", abn: "PNG সবচেয়ে ভালো, কারণ স্বচ্ছতা ও স্পষ্টতা ঠিক থাকে।", aen: "PNG is best — it preserves transparency and crisp edges." },
-      { qbn: "কনভার্ট কি আপলোড ছাড়াই হয়?", qen: "Does conversion happen without upload?", abn: "হ্যাঁ, পুরোটাই ব্রাউজারে হয়।", aen: "Yes, entirely in your browser.", }
+      { qbn: "কনভার্ট কি আপলোড ছাড়াই হয়?", qen: "Does conversion happen without upload?", abn: "হ্যাঁ, পুরোটাই ব্রাউজারে হয়।", aen: "Yes, entirely in your browser.", },
+      { qbn: "তৈরি ICO ফাইল কতটা বড় হয়?", qen: "How big is the resulting ICO file?", abn: "প্রায় কয়েক কিলোবাইট থেকে কয়েক ডজন কিলোবাইট — মোট সাইজের উপর নির্ভর করে। আইকন ফাইল সবসময় ছোটই থাকে।", aen: "Usually a few kilobytes to a few dozen, depending on the sizes you pick. Icon files stay small either way.", },
+      { qbn: "অ্যানিমেটেড GIF বা ভিডিও নেওয়া যাবে?", qen: "Does it accept animated GIFs or video?", abn: "সাধারণ ছবি (JPG, PNG, WebP) নেওয়া যায়। অ্যানিমেশন থাকলে শুধু প্রথম ফ্রেমটি আইকনে বসবে।", aen: "Regular images (JPG, PNG, WebP) work. If the file is animated, only its first frame becomes the icon.", },
+
     ]
   }
 ];

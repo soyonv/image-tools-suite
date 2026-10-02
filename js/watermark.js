@@ -46,7 +46,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -189,8 +189,8 @@
         sizeAfter.textContent = PT.formatBytes(blob.size);
         dimAfter.textContent = canvas.width + " × " + canvas.height + " px";
         statusEl.textContent = mode === "image" && !logoImage
-          ? (PT.getLang() === "en" ? "Choose a logo image to continue." : "একটি লোগো ছবি বেছে নিন।")
-          : (PT.getLang() === "en" ? "Watermark applied — live preview updated." : "ওয়াটারমার্ক বসানো হয়েছে।");
+          ? PT.pick("Choose a logo image to continue.", "একটি লোগো ছবি বেছে নিন।")
+          : PT.pick("Watermark applied — live preview updated.", "ওয়াটারমার্ক বসানো হয়েছে।");
       })
       .catch(function () { /* ignore */ });
   }

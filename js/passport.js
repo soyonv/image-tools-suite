@@ -51,11 +51,9 @@
       dimBefore.textContent = img.naturalWidth + " × " + img.naturalHeight + " px";
 
       scheduleRender(0);
-      statusEl.textContent = PT.getLang() === "en"
-        ? "Photo loaded — choose a size preset."
-        : "ছবি লোড হয়েছে — সাইজ প্রিসেট বাছুন।";
+      statusEl.textContent = PT.pick("Photo loaded — choose a size preset.", "ছবি লোড হয়েছে — সাইজ প্রিসেট বাছুন।");
     }).catch(function () {
-      alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+      alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
     });
   });
 
@@ -124,11 +122,11 @@
       sizeAfter.textContent = PT.formatBytes(blob.size);
       dimAfter.textContent = fw + " × " + fh + " px @ " + DPI + " DPI · " +
         preset.w + "×" + preset.h + " " + unitLabel;
-      statusEl.textContent = (PT.getLang() === "en" ? "Ready: " : "প্রস্তুত: ") +
+      statusEl.textContent = PT.pick("Ready: ", "প্রস্তুত: ") +
         preset.label + " @ " + DPI + " DPI.";
     }).catch(function () {
       if (seq !== renderSeq) return;
-      statusEl.textContent = PT.getLang() === "en" ? "Export failed." : "এক্সপোর্ট ব্যর্থ।";
+      statusEl.textContent = PT.pick("Export failed.", "এক্সপোর্ট ব্যর্থ।");
     });
   }
 

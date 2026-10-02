@@ -50,7 +50,7 @@
         render();
       })
       .catch(function () {
-        alert(PT.getLang() === "en" ? "Could not read this image." : "এই ছবিটি পড়া যায়নি।");
+        alert(PT.pick("Could not read this image.", "এই ছবিটি পড়া যায়নি।"));
       });
   });
 
@@ -141,11 +141,11 @@
         sizeAfter.textContent = PT.formatBytes(blob.size);
         dimAfter.textContent = canvas.width + " × " + canvas.height + " px";
         statusEl.textContent = f
-          ? (PT.getLang() === "en" ? "Filters applied — live preview updated." : "ফিল্টার প্রয়োগ হয়েছে — প্রিভিউ আপডেট হয়েছে।")
-          : (PT.getLang() === "en" ? "No filters yet — move a slider to start." : "এখনো কোনো ফিল্টার নেই — স্লাইডার নাড়ান।");
+          ? PT.pick("Filters applied — live preview updated.", "ফিল্টার প্রয়োগ হয়েছে — প্রিভিউ আপডেট হয়েছে।")
+          : PT.pick("No filters yet — move a slider to start.", "এখনো কোনো ফিল্টার নেই — স্লাইডার নাড়ান।");
       })
       .catch(function () {
-        statusEl.textContent = PT.getLang() === "en" ? "Export failed." : "এক্সপোর্ট ব্যর্থ।";
+        statusEl.textContent = PT.pick("Export failed.", "এক্সপোর্ট ব্যর্থ।");
       });
   }
 

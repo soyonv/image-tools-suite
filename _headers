@@ -17,3 +17,12 @@
 
 /og-image.svg
   Cache-Control: public, max-age=604800
+
+/og-image.png
+  Cache-Control: public, max-age=604800
+
+# Guides and tool pages change as copy improves, so HTML is always
+# revalidated. This keeps crawlers on the current version instead of
+# serving a week-old cached page.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
